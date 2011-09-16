@@ -1,3 +1,9 @@
-Miniproject, done as a requirment for paper on Databases.
-Using java and sql
-with jdbc :
+Yet-to-be-named
+
+JAVA application to manage BOINC projects in a server. The idea is to implement
+ 
+* Click and go approach to add,edit,remove apps (native or non-native using WrapperApp).
+* Graphical, interactive interface for computations with complex validation needs.
+
+
+Written as a lab assignment for the Databases Application Lab and released under GPL.  
