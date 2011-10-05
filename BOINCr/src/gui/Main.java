@@ -6,7 +6,7 @@ public class Main {
 	static  Authenticator A; 
 	static Window win;
 	
-	public static void main(String[] args) {
+	public Main() {
 		A=new Authenticator();
 		win=new Window();
 
