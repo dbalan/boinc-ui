@@ -25,7 +25,7 @@ public class Window {
 	@SuppressWarnings("serial")
 	private void initialize() {
 		frame = new JFrame();
-		frame.setMinimumSize(new Dimension(500,300));
+		frame.setMinimumSize(new Dimension(1000,500));
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		frame.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e){
