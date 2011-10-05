@@ -1,0 +1,9 @@
+
+i put this frontend code here due to problem with importing Authenticator class .We can change this  in future if needed.
+
+Try to run this code in eclipse.this Login window has some apperarance coding which is not working in Netbeans(Nimbuz style is set for buttons & gui which will be working in eclipse but for Netbeans there will be normal appearance)
+
+i commented the session for opening new window when the username & password are correct & the user cliks the login button (in Login.java).We can put the rest of code
+the code there(i mean call for opening new window)
+
+
