@@ -12,20 +12,21 @@ public class Window {
 
 	private JFrame frame;
 	private JTable table;
+	private Object[][] data;
 	public Window() {
-		initialize();
-		{
-			new Login();
-		}
-		setVisible(false);
+		Login l=new Login();
+		l.setVisible(true);
 	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	@SuppressWarnings("serial")
-	private void initialize() {
+	void initialize() {
+		
+		//final Image icon=Toolkit.getDefaultToolkit().getImage("path");
 		frame = new JFrame();
-		frame.setMinimumSize(new Dimension(1000,500));
+		frame.setTitle("BONICr");
+		//frame.setIconImage(icon);
+		frame.setSize(1000, 700);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		frame.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e){
@@ -66,6 +67,19 @@ public class Window {
 			}
 		});
 		FileMenu.add(MenuExit);
+		
+		JMenu HelpMenu =new JMenu("Help");
+		menuBar.add(HelpMenu);
+		
+		final JMenuItem MenuAbout= new JMenuItem("About");
+		MenuAbout.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg){
+				String str="<html><p align =\"center\"><p>About</p><p></html>";
+				JOptionPane.showMessageDialog(MenuAbout,str,"About",JOptionPane.INFORMATION_MESSAGE/*,new ImageIcon(icon)*/);
+			}
+		});
+		HelpMenu.add(MenuAbout);
+		
 		JPanel Applicatonpannel = new JPanel();
 		tabbedPane.addTab("Applications", null, Applicatonpannel, null);
 		tabbedPane.setEnabledAt(0, true);
@@ -90,9 +104,12 @@ public class Window {
 		gbc_Tablepanel.gridy = 1;
 		Applicatonpannel.add(Tablepanel, gbc_Tablepanel);
 
+		
+		
+		
+		
 		//data for testing
-		Object[][] data = {
-				{ "4567" , "8675Gail" },
+		Object[][]datatest = {{ "4567" , "8675Gail" },
 				{ "Ken7566", "5555" },
 				{ "Viviane5634", "5887" },
 				{ "Melanie7345", "9222" },
@@ -113,23 +130,12 @@ public class Window {
 				{ "Ellen1134", "5332" },
 				{ "Jennif5689", "1212" },
 				};
+		data=datatest;
+		//delete up to this from "//data for testing"
 
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setModel(new DefaultTableModel(data,
-			new String[] {
-				"NO", "APPLICATION"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		table.getColumnModel().getColumn(0).setPreferredWidth(25);
-		table.getColumnModel().getColumn(1).setPreferredWidth(105);
+		setapptable();
 		table.setFillsViewportHeight(true);
 		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		table.setAutoscrolls(true);
@@ -143,6 +149,8 @@ public class Window {
 				String str=(String) table.getValueAt(row,1);
 				if (JOptionPane.showConfirmDialog(Deletebtn, "delete "+str+" ?")==0){
 					//delete
+					//modify data[][]
+					setapptable();
 					JOptionPane.showMessageDialog(Deletebtn, "deteted");
 				}
 			}
@@ -159,6 +167,7 @@ public class Window {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setEnabled(false);
 				new Add();
+				//modify data[][]
 				}
 		});
 		
@@ -178,6 +187,26 @@ public class Window {
 		frame.setVisible(val);
 	}
 	public void setEnabled(boolean val){
+		
 		frame.setEnabled(val);
+	}
+	@SuppressWarnings("serial")
+	public void setapptable(){
+		//getdata from database;
+		//data=Main.A.getdataarray("col1,col2", "table");		
+		table.setModel(new DefaultTableModel(data,
+				new String[] {
+					"NO", "APPLICATION"
+				}
+			) {
+				boolean[] columnEditables = new boolean[] {
+					false, false
+				};
+				public boolean isCellEditable(int row, int column) {
+					return columnEditables[column];
+				}
+			});
+		table.getColumnModel().getColumn(0).setPreferredWidth(25);
+		table.getColumnModel().getColumn(1).setPreferredWidth(105);
 	}
 }

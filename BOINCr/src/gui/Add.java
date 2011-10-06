@@ -72,6 +72,7 @@ public class Add {
 				    //if (JOptionPane.showConfirmDialog(panel, "Add "+app +" ("+platform+") "," Add Application",JOptionPane.OK_CANCEL_OPTION )==0){
 					//addtodatabase
 					//JOptionPane.showMessageDialog(btnAdd,app +" ("+platform+") added","Application added",JOptionPane.INFORMATION_MESSAGE);
+					Main.win.setapptable();
 					Addframe.dispose();
 					Main.win.setEnabled(true);
 					
