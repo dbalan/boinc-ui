@@ -1,4 +1,4 @@
-package boinc;
+package backend;
 
 public class BoincMain {
 	

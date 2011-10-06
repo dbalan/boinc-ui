@@ -7,7 +7,7 @@
  *
  */
 
-import backend.Login;
+import gui.Login;
 import gui.Main;
 
 public class Boincr {
