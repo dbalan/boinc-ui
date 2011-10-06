@@ -1,6 +1,5 @@
 package gui;
 import gui.Main;
-
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -97,7 +96,6 @@ public class Login extends JFrame{
         	}
         });
         getContentPane().add(jPanel1);
-
         pack();
         
 	}

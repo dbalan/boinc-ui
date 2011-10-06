@@ -22,13 +22,13 @@ public class Authenticator {
 		catch (ClassNotFoundException ae)
 		{
 			System.err.println("Class Not Found!!!");
-			ae.printStackTrace();
+			System.err.println(ae.toString());
 			return false;
 		}		
 		catch (SQLException sqle)
 		{
 			System.err.println("SQLException!!");
-			sqle.printStackTrace();
+			System.err.println(sqle.toString());
 			return false;
 		}
 	}

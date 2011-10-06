@@ -51,7 +51,8 @@ public class Window {
 				{
 					Main.A.exit();
 					setVisible(false);
-					new Login();
+					frame.pack();
+					new Main();
 				}
 			}
 		});
