@@ -1,6 +1,8 @@
 package gui;
 import gui.Main;
 import javax.swing.*;
+
+//import java.awt.Toolkit;
 import java.awt.event.*;
 
 @SuppressWarnings("serial")
@@ -18,6 +20,9 @@ public class Login extends JFrame{
 	
 	public Login(){
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		requestFocus();
+		setLocation(400, 200);
+		//setIconImage(Toolkit.getDefaultToolkit().getImage("path"));
         getContentPane().setLayout(new java.awt.FlowLayout());
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

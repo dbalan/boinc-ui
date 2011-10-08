@@ -73,5 +73,21 @@ public class Authenticator {
 				e1.printStackTrace();
 				return null;
 			}
-	}
+			
+		}
+	public boolean insert(String Feild,String Values,String table){
+		Statement stmt;
+		try {
+			
+			stmt = con.createStatement();
+			int row = stmt.executeUpdate("INSERT INTO "+table+" ("+Feild+") VALUES ("+Values+")");
+			if(row>0)return true;
+			else return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		}
 }
+

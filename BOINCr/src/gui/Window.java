@@ -22,12 +22,11 @@ public class Window {
 	 */
 	void initialize() {
 		
-		//final Image icon=Toolkit.getDefaultToolkit().getImage("path");
 		frame = new JFrame();
 		frame.setTitle("BONICr");
-		//frame.setIconImage(icon);
 		frame.setSize(1000, 700);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		//frame.setIconImage(Toolkit.getDefaultToolkit().getImage("path"));
 		frame.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e){
 					Main.A.exit();
@@ -194,7 +193,7 @@ public class Window {
 	@SuppressWarnings("serial")
 	public void setapptable(){
 		//getdata from database;
-		//data=Main.A.getdataarray("col1,col2", "table");		
+		//data=Main.A.getdataarray("id,name", "app");		
 		table.setModel(new DefaultTableModel(data,
 				new String[] {
 					"NO", "APPLICATION"

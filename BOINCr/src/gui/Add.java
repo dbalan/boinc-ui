@@ -17,10 +17,13 @@ public class Add {
 	public Add() {
 					initialize();	
 					Addframe.setVisible(true);
+					Addframe.requestFocus();
+					Addframe.setLocation(500, 400);
 	}
 
 	private void initialize() {
 		Addframe = new JFrame();
+		//Addframe.setIconImage(Toolkit.getDefaultToolkit().getImage("path"));
 		Addframe.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		Addframe.setResizable(false);
 		Addframe.setMinimumSize(new Dimension(400,200));
@@ -72,6 +75,7 @@ public class Add {
 				    //if (JOptionPane.showConfirmDialog(panel, "Add "+app +" ("+platform+") "," Add Application",JOptionPane.OK_CANCEL_OPTION )==0){
 					//addtodatabase
 					//JOptionPane.showMessageDialog(btnAdd,app +" ("+platform+") added","Application added",JOptionPane.INFORMATION_MESSAGE);
+					//Main.A.addApp(app,platform);
 					Main.win.setapptable();
 					Addframe.dispose();
 					Main.win.setEnabled(true);
