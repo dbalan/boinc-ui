@@ -32,22 +32,22 @@ public class Add {
 		panel.setLayout(null);
 	
 		JLabel lblApplication = new JLabel("Application");
-		lblApplication.setBounds(61, 33, 117, 15);
+		lblApplication.setBounds(61, 33, 117, 20);
 		panel.add(lblApplication);
 		
 		JLabel lblPlatform = new JLabel("Platform");
-		lblPlatform.setBounds(61, 73, 117, 15);
+		lblPlatform.setBounds(61, 73, 117, 20);
 		panel.add(lblPlatform);
 		
 		AppField = new JTextField();
 		lblApplication.setLabelFor(AppField);
-		AppField.setBounds(225, 31, 114, 19);
+		AppField.setBounds(225, 31, 114, 28);
 		panel.add(AppField);
 		AppField.setColumns(10);
 		
 		PlatformField = new JTextField();
 		lblPlatform.setLabelFor(PlatformField);
-		PlatformField.setBounds(225, 71, 114, 19);
+		PlatformField.setBounds(225, 71, 114, 28);
 		panel.add(PlatformField);
 		PlatformField.setColumns(10);
 		
