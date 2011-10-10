@@ -106,33 +106,6 @@ public class Window {
 
 		
 		
-		
-		
-		//data for testing
-		Object[][]datatest = {{ "4567" , "8675Gail" },
-				{ "Ken7566", "5555" },
-				{ "Viviane5634", "5887" },
-				{ "Melanie7345", "9222" },
-				{ "Anne1237", "3333" },
-				{ "John5656", "3144" },
-				{ "Matt5672", "2176" },
-				{ "Claire6741", "4244" },
-				{ "Erwin9023", "5159" },
-				{ "Ellen1134", "5332" },
-				{ "Jennif5689", "1212" },
-				{ "Ed9030", "1313" },
-				{ "He6751", "1415" },
-				{ "Anne1237", "3333" },
-				{ "John5656", "3144" },
-				{ "Matt5672", "2176" },
-				{ "Claire6741", "4244" },
-				{ "Erwin9023", "5159" },
-				{ "Ellen1134", "5332" },
-				{ "Jennif5689", "1212" },
-				};
-		data=datatest;
-		//delete up to this from "//data for testing"
-
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		setapptable();
@@ -193,7 +166,7 @@ public class Window {
 	@SuppressWarnings("serial")
 	public void setapptable(){
 		//getdata from database;
-		//data=Main.A.getdataarray("id,name", "app");		
+		data=Main.A.getdataarray("id,name", "app");		
 		table.setModel(new DefaultTableModel(data,
 				new String[] {
 					"NO", "APPLICATION"
@@ -206,7 +179,7 @@ public class Window {
 					return columnEditables[column];
 				}
 			});
-		table.getColumnModel().getColumn(0).setPreferredWidth(25);
+		table.getColumnModel().getColumn(0).setPreferredWidth(11);
 		table.getColumnModel().getColumn(1).setPreferredWidth(105);
 	}
 }
