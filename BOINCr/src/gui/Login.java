@@ -67,8 +67,8 @@ public class Login extends JFrame{
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(139, Short.MAX_VALUE))
         );
-
-        jButton1.addActionListener(new ActionListener(){
+        
+        ActionListener enter=new ActionListener(){
         	public void actionPerformed(ActionEvent ae){
         		if(jTextField1.getText().equals(Nul)){
         			JOptionPane.showMessageDialog(null,"Enter the Username");
@@ -87,7 +87,7 @@ public class Login extends JFrame{
         			String dbase = jTextField2.getText();
         			String host = "localhost";
         			if(Main.A.getConnected(uname, passwd, host, dbase)){
-        				JOptionPane.showMessageDialog(null,"connected to database");
+        				//JOptionPane.showMessageDialog(null,"connected to database");
         				Main.win.initialize();
     					Main.win.setVisible(true);
     					dispose();
@@ -99,7 +99,9 @@ public class Login extends JFrame{
         			}
         		}
         	}
-        });
+        };
+        jButton1.addActionListener(enter);
+        jButton1.registerKeyboardAction(enter,KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false),JComponent.WHEN_IN_FOCUSED_WINDOW);
         getContentPane().add(jPanel1);
         pack();
         
