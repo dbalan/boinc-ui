@@ -10,6 +10,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -136,12 +137,11 @@ public class Window {
 		
 		JButton btnDetails = new JButton("Details");
 		btnDetails.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String msg="details are place here";
+			public void actionPerformed(ActionEvent arg0) {			
 				int row=table.getSelectedRow();
 				if(row==-1) return;
-				//String str=(String) table.getValueAt(row,1);
-					JOptionPane.showMessageDialog(null,msg);
+				String str=table.getValueAt(row,0).toString();
+				new Details(str);
 			}
 		});
 		GridBagConstraints gbc_btnDetails = new GridBagConstraints();
