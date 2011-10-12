@@ -26,6 +26,7 @@ public class AddApplication {
 		PlatformArray[0][1] = "Microsoft Windows (98 or later) running on an Intel x86-compatible CPU";
 		PlatformArray[1][0] = "i686-pc-linux-gnu";
 		PlatformArray[1][1] = "Linux running on an Intel x86-compatible CPU";
+		//TODO Add platforms as nec.
 
 		for (int i=0 ; i < 2; i++)
 		{
