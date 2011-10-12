@@ -86,10 +86,10 @@ public class Login extends JFrame{
         			String passwd = new String(jPasswordField1.getPassword());
         			String dbase = jTextField2.getText();
         			String host = "localhost";
-        			if(Main.A.getConnected(uname, passwd, host, dbase)){
+        			if(Main.Auth.getConnected(uname, passwd, host, dbase)){
         				//JOptionPane.showMessageDialog(null,"connected to database");
-        				Main.win.initialize();
-    					Main.win.setVisible(true);
+        				Main.Win.initialize();
+    					Main.Win.setVisible(true);
     					dispose();
         			}
         			else{

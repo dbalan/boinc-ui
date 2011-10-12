@@ -29,7 +29,7 @@ public class Window {
 		//frame.setIconImage(Toolkit.getDefaultToolkit().getImage("path"));
 		frame.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e){
-					Main.A.exit();
+					Main.Auth.exit();
 					System.exit(0);
 			}
 			});
@@ -48,7 +48,7 @@ public class Window {
 			public void actionPerformed(ActionEvent arg0) {
 				if(JOptionPane.showConfirmDialog(MenuDisconect, "Disconnect Database ?","Exit",JOptionPane.OK_CANCEL_OPTION)==0)
 				{
-					Main.A.exit();
+					Main.Auth.exit();
 					setVisible(false);
 					frame.pack();
 					new Main();
@@ -60,7 +60,7 @@ public class Window {
 		MenuExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(JOptionPane.showConfirmDialog(MenuExit, "Exit _______ ?","Exit",JOptionPane.OK_CANCEL_OPTION)==0){
-					Main.A.exit();
+					Main.Auth.exit();
 					System.exit(0);
 				}
 					
@@ -166,7 +166,7 @@ public class Window {
 	@SuppressWarnings("serial")
 	public void setapptable(){
 		//getdata from database;
-		data=Main.A.getdataarray("id,name", "app");		
+		data=Main.Auth.getdataarray("id,name", "app");		
 		table.setModel(new DefaultTableModel(data,
 				new String[] {
 					"NO", "APPLICATION"

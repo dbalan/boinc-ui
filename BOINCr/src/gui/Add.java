@@ -65,7 +65,7 @@ public class Add {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Addframe.dispose();
-				Main.win.setEnabled(true);
+				Main.Win.setEnabled(true);
 			}
 		});
 		btnCancel.setBounds(61, 115, 117, 25);
@@ -82,9 +82,9 @@ public class Add {
 					//addtodatabase
 					//JOptionPane.showMessageDialog(btnAdd,app +" ("+platform+") added","Application added",JOptionPane.INFORMATION_MESSAGE);
 					//Main.A.addApp(app,platform);
-					Main.win.setapptable();
+					Main.Win.setapptable();
 					Addframe.dispose();
-					Main.win.setEnabled(true);
+					Main.Win.setEnabled(true);
 					
 				//}
 				//else return;
@@ -102,8 +102,8 @@ public class Add {
 	}
 	public void setplatforms(){
 		String[] data;
-		ResultSet rs=Main.A.getresult("name","platform");
-		int rows =Main.A.getRowsNos(rs);
+		ResultSet rs=Main.Auth.getresult("name","platform");
+		int rows =Main.Auth.getRowsNos(rs);
 		data=new String[rows];
 		int i=0;
 		try {
