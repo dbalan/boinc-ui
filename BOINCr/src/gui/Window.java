@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 public class Window {
 
 	private JFrame frame;
@@ -115,12 +116,15 @@ public class Window {
 		table.setAutoscrolls(true);
 		Table.add(table, BorderLayout.CENTER);
 		
+		JTableHeader tableheader=table.getTableHeader();
+		Table.add(tableheader, BorderLayout.NORTH);
+		
 		final JButton Deletebtn = new JButton("Delete Applicaton");
 		Deletebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int row=table.getSelectedRow();
 				if(row==-1) return;
-				String str=(String) table.getValueAt(row,0);
+				String str=(String) table.getValueAt(row,1);
 				if (JOptionPane.showConfirmDialog(Deletebtn, "delete "+str+" ?")==0){
 					//delete
 					//modify data[][]
@@ -167,18 +171,20 @@ public class Window {
 	@SuppressWarnings("serial")
 	public void setapptable(){
 		//getdata from database;
-		data=Main.Auth.getdataarray("user_friendly_name", "app");		
+		data=Main.Auth.getdataarray("id,user_friendly_name", "app");		
 		table.setModel(new DefaultTableModel(data,
 				new String[] {
-					 "APPLICATION"
+					"ID", "APPLICATION"
 				}
 			) {
 				boolean[] columnEditables = new boolean[] {
-					false
+					false,false
 				};
 				public boolean isCellEditable(int row, int column) {
 					return columnEditables[column];
 				}
 			});
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+		table.getColumnModel().getColumn(0).setMaxWidth(35);
 	}
 }
