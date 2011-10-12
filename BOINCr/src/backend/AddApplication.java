@@ -6,17 +6,17 @@ package backend;
 
 import gui.Main;
 
-import java.io.*;
 import java.sql.*;
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 public class AddApplication {
 
 
-	public void AddApplication(int Platform[], String appName, String actualAppName) throws SQLException {
+	public AddApplication(int Platform[], String appName, String actualAppName) throws SQLException {
 		// Check platforms and Add.
 		String PlatformArray[][] = new String[2][];
-
+        long epoch = 0;
+        
 		for (int i=0; i < 2; i++)
 		{
 			PlatformArray[i] = new String[2];
@@ -37,9 +37,9 @@ public class AddApplication {
 				{
 					res = Main.Auth.getResult("MAX (id)", "platform");
 					int nextID = res.getInt(1)+1;
-					long epoch = System.currentTimeMillis()/1000;
+					epoch = System.currentTimeMillis()/1000;
 					
-					String Values = Integer.toString(nextID)+","+epoch+","+PlatformArray[i][0]+","+PlatformArray[1];
+					String Values = Integer.toString(nextID)+","+Long.toString(epoch)+","+PlatformArray[i][0]+","+PlatformArray[1];
 					Main.Auth.insertRow(Values, "platform");
 				}
 			}
@@ -50,7 +50,7 @@ public class AddApplication {
 
 		}
 
-		String AppValues = "1,"+epoch+","+appName+",0,0,"+actualAppName+",0,1,0,0,1,0";
+		String AppValues = "1,"+Long.toString(epoch)+","+appName+",0,0,"+actualAppName+",0,1,0,0,1,0";
 		boolean flag = Main.Auth.insertRow(AppValues, "app");
 
 		if(flag)
