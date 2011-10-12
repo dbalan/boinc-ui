@@ -134,6 +134,23 @@ public class Window {
 		JTableHeader tableheader=table.getTableHeader();
 		Table.add(tableheader, BorderLayout.NORTH);
 		
+		JButton btnDetails = new JButton("Details");
+		btnDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String msg="details are place here";
+				int row=table.getSelectedRow();
+				if(row==-1) return;
+				//String str=(String) table.getValueAt(row,1);
+					JOptionPane.showMessageDialog(null,msg);
+			}
+		});
+		GridBagConstraints gbc_btnDetails = new GridBagConstraints();
+		gbc_btnDetails.fill = GridBagConstraints.BOTH;
+		gbc_btnDetails.insets = new Insets(0, 0, 5, 0);
+		gbc_btnDetails.gridx = 12;
+		gbc_btnDetails.gridy = 4;
+		Applicatonpannel.add(btnDetails, gbc_btnDetails);
+		
 		final JButton Deletebtn = new JButton("Delete Applicaton");
 		Deletebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
