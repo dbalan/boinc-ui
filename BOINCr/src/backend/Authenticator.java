@@ -60,7 +60,7 @@ public class Authenticator {
 			return 0;
 		}
 	}
-	public Object[][] getdataarray(String col,String table){
+	public Object[][] getDataArray(String col,String table){
 		try {
 			Statement stmt = con.createStatement();
 			  ResultSet rs;
@@ -83,7 +83,7 @@ public class Authenticator {
 				return null;
 			}
 	}
-	public ResultSet getresult(String col,String table){
+	public ResultSet getResult(String col,String table){
 		try {
 			Statement stmt = con.createStatement();
 			  ResultSet rs;
@@ -95,12 +95,12 @@ public class Authenticator {
 				return null;
 			}
 	}
-	public boolean insert(String Feild,String Values,String table){
+	public boolean insert(String Feild,String Values,String Table){
 		Statement stmt;
 		try {
 			
 			stmt = con.createStatement();
-			int row = stmt.executeUpdate("INSERT INTO "+table+" ("+Feild+") VALUES ("+Values+")");
+			int row = stmt.executeUpdate("INSERT INTO "+Table+" ("+Feild+") VALUES ("+Values+")");
 			if(row>0)return true;
 			else return false;
 		} catch (SQLException e) {
@@ -109,4 +109,18 @@ public class Authenticator {
 		}
 		
 		}
+	public boolean insertRow(String Values,String Table){
+	Statement stmt;
+	try {
+		
+		stmt = con.createStatement();
+		int row = stmt.executeUpdate("INSERT INTO "+Table+"VALUES ("+Values+")");
+		if(row>0)return true;
+		else return false;
+	} catch (SQLException e) {
+		e.printStackTrace();
+		return false;
+	}
+	
+	}
 }

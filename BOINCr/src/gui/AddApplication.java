@@ -18,11 +18,11 @@ import java.sql.SQLException;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-public class Add {
+public class AddApplication {
 	JFrame Addframe;
 	private JTextField AppField;
 	private JComboBox PlatformField;
-	public Add() {
+	public AddApplication() {
 					initialize();	
 					Addframe.setVisible(true);
 					Addframe.requestFocus();
@@ -102,7 +102,7 @@ public class Add {
 	}
 	public void setplatforms(){
 		String[] data;
-		ResultSet rs=Main.Auth.getresult("name","platform");
+		ResultSet rs=Main.Auth.getResult("name","platform");
 		int rows =Main.Auth.getRowsNos(rs);
 		data=new String[rows];
 		int i=0;

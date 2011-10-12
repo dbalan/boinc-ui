@@ -3,7 +3,7 @@ package gui;
 import backend.Authenticator;
 
 public class Main {
-	static  Authenticator Auth; 
+	public static  Authenticator Auth; 
 	static Window Win;
 	
 	public Main() {
