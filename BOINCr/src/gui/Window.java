@@ -16,6 +16,7 @@ public class Window {
 	public Window() {
 		Login l=new Login();
 		l.setVisible(true);
+		//initialize();
 	}
 	/**
 	 * Initialize the contents of the frame.
@@ -119,7 +120,7 @@ public class Window {
 			public void actionPerformed(ActionEvent arg0) {
 				int row=table.getSelectedRow();
 				if(row==-1) return;
-				String str=(String) table.getValueAt(row,1);
+				String str=(String) table.getValueAt(row,0);
 				if (JOptionPane.showConfirmDialog(Deletebtn, "delete "+str+" ?")==0){
 					//delete
 					//modify data[][]
@@ -166,20 +167,18 @@ public class Window {
 	@SuppressWarnings("serial")
 	public void setapptable(){
 		//getdata from database;
-		data=Main.Auth.getdataarray("id,name", "app");		
+		data=Main.Auth.getdataarray("user_friendly_name", "app");		
 		table.setModel(new DefaultTableModel(data,
 				new String[] {
-					"NO", "APPLICATION"
+					 "APPLICATION"
 				}
 			) {
 				boolean[] columnEditables = new boolean[] {
-					false, false
+					false
 				};
 				public boolean isCellEditable(int row, int column) {
 					return columnEditables[column];
 				}
 			});
-		table.getColumnModel().getColumn(0).setPreferredWidth(11);
-		table.getColumnModel().getColumn(1).setPreferredWidth(105);
 	}
 }
