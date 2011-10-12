@@ -37,8 +37,9 @@ public class AddApplication {
 				{
 					res = Main.Auth.getResult("MAX (id)", "platform");
 					int nextID = res.getInt(1)+1;
-					// TODO Calculate Time.
-					String Values = Integer.toString(nextID)+","+PlatformArray[i][0]+","+PlatformArray[1];
+					long epoch = System.currentTimeMillis()/1000;
+					
+					String Values = Integer.toString(nextID)+","+epoch+","+PlatformArray[i][0]+","+PlatformArray[1];
 					Main.Auth.insertRow(Values, "platform");
 				}
 			}
@@ -49,7 +50,7 @@ public class AddApplication {
 
 		}
 
-		String AppValues = "1,1318422224,"+appName+",0,0,"+actualAppName+",0,1,0,0,1,0";
+		String AppValues = "1,"+epoch+","+appName+",0,0,"+actualAppName+",0,1,0,0,1,0";
 		boolean flag = Main.Auth.insertRow(AppValues, "app");
 
 		if(flag)
