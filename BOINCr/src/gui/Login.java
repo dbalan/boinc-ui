@@ -11,9 +11,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 public class Login extends JFrame{
 	
 	private JButton jButton1 = new JButton("Login");
-	private JLabel jLabel1 = new JLabel("username");
-	private JLabel jLabel2 = new JLabel("password");
-	private JLabel jLabel3 = new JLabel("database");
+	private JLabel jLabel1 = new JLabel("Username*");
+	private JLabel jLabel2 = new JLabel("Password*");
+	private JLabel jLabel3 = new JLabel("Database*");
 	private JPanel jPanel1  = new JPanel();
 	private JPasswordField jPasswordField1 = new JPasswordField();
 	private JTextField jTextField1 = new JTextField();
@@ -23,6 +23,7 @@ public class Login extends JFrame{
 	private JTextField portField;
 	private JLabel lblHost;
 	private JLabel label;
+	private JTextField pathField;
 	
 	public Login(){
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -31,7 +32,7 @@ public class Login extends JFrame{
 		//setIconImage(Toolkit.getDefaultToolkit().getImage("path"));
         getContentPane().setLayout(new java.awt.FlowLayout());
         
-        lblHost = new JLabel("host");
+        lblHost = new JLabel("Host*");
         
         hostField = new JTextField();
         hostField.setColumns(10);
@@ -43,6 +44,10 @@ public class Login extends JFrame{
         portField.setColumns(10);
         portField.setText("3306");
         
+JLabel lblProjectPath = new JLabel("ProjectPath");
+        
+        pathField = new JTextField();
+        pathField.setColumns(10);
         javax.swing.GroupLayout gl_jPanel1 = new javax.swing.GroupLayout(jPanel1);
         gl_jPanel1.setHorizontalGroup(
         	gl_jPanel1.createParallelGroup(Alignment.LEADING)
@@ -51,22 +56,28 @@ public class Login extends JFrame{
         			.addGroup(gl_jPanel1.createParallelGroup(Alignment.TRAILING)
         				.addComponent(jButton1)
         				.addGroup(gl_jPanel1.createSequentialGroup()
-        					.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING, false)
-        						.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-        						.addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        						.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-        						.addComponent(lblHost, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        					.addPreferredGap(ComponentPlacement.UNRELATED)
         					.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING)
+        						.addGroup(Alignment.TRAILING, gl_jPanel1.createSequentialGroup()
+        							.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING, false)
+        								.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+        								.addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        								.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+        								.addComponent(lblHost, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        							.addPreferredGap(ComponentPlacement.UNRELATED))
         						.addGroup(gl_jPanel1.createSequentialGroup()
+        							.addComponent(lblProjectPath, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+        							.addGap(6)))
+        					.addGroup(gl_jPanel1.createParallelGroup(Alignment.TRAILING, false)
+        						.addComponent(pathField, Alignment.LEADING)
+        						.addGroup(Alignment.LEADING, gl_jPanel1.createSequentialGroup()
         							.addComponent(hostField, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
         							.addPreferredGap(ComponentPlacement.RELATED)
         							.addComponent(label, GroupLayout.PREFERRED_SIZE, 5, GroupLayout.PREFERRED_SIZE)
         							.addPreferredGap(ComponentPlacement.RELATED)
         							.addComponent(portField, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
-        						.addComponent(jPasswordField1, 162, 162, 162)
-        						.addComponent(jTextField2, 162, 162, 162)
-        						.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))))
+        						.addComponent(jTextField1, Alignment.LEADING)
+        						.addComponent(jPasswordField1, Alignment.LEADING)
+        						.addComponent(jTextField2, Alignment.LEADING))))
         			.addGap(125))
         );
         gl_jPanel1.setVerticalGroup(
@@ -90,9 +101,13 @@ public class Login extends JFrame{
         				.addComponent(hostField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         				.addComponent(label)
         				.addComponent(portField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addGap(13)
+        			.addGap(18)
+        			.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING)
+        				.addComponent(lblProjectPath)
+        				.addComponent(pathField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(jButton1)
-        			.addContainerGap(110, Short.MAX_VALUE))
+        			.addContainerGap(84, Short.MAX_VALUE))
         );
         jPanel1.setLayout(gl_jPanel1);
         
