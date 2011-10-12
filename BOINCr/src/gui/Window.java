@@ -25,7 +25,7 @@ public class Window {
 		
 		frame = new JFrame();
 		frame.setTitle("BONICr");
-		frame.setSize(1000, 700);
+		frame.setSize(450, 350);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		//frame.setIconImage(Toolkit.getDefaultToolkit().getImage("path"));
 		frame.addWindowListener(new WindowAdapter(){
@@ -82,7 +82,7 @@ public class Window {
 		HelpMenu.add(MenuAbout);
 		
 		JPanel Applicatonpannel = new JPanel();
-		tabbedPane.addTab("Applications", null, Applicatonpannel, null);
+		tabbedPane.addTab("App Management", null, Applicatonpannel, null);
 		tabbedPane.setEnabledAt(0, true);
 		GridBagLayout gbl_Applicatonpannel = new GridBagLayout();
 		gbl_Applicatonpannel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -140,7 +140,7 @@ public class Window {
 		Addbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setEnabled(false);
-				new Add();
+				new AddApplication();
 				//modify data[][]
 				}
 		});
@@ -167,7 +167,7 @@ public class Window {
 	@SuppressWarnings("serial")
 	public void setapptable(){
 		//getdata from database;
-		data=Main.Auth.getdataarray("user_friendly_name", "app");		
+		data=Main.Auth.getDataArray("user_friendly_name", "app");		
 		table.setModel(new DefaultTableModel(data,
 				new String[] {
 					 "APPLICATION"
