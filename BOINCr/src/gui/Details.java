@@ -67,7 +67,7 @@ public class Details extends JFrame {
 		String msg="<HTML><p align=\"center\"><table>";		
 		String tableTmp = "app WHERE id="+id;
 		try{
-		ResultSet rs=Main.Auth.getresult("*",tableTmp); 
+		ResultSet rs=Main.Auth.getResult("*",tableTmp); 
 		if(rs!=null){
 			rs.first();
 			msg+="<tr><td>Name</td><td>"+rs.getString("name")+"</td>";
