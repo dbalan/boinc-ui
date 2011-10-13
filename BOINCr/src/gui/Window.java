@@ -203,7 +203,7 @@ public class Window {
 	@SuppressWarnings("serial")
 	public void setapptable(){
 		//getdata from database;
-		data=Main.Auth.getDataArray("user_friendly_name", "app");		
+		data=Main.Auth.getDataArray("id,user_friendly_name", "app");		
 		table.setModel(new DefaultTableModel(data,
 				new String[] {
 					"ID", "APPLICATION"

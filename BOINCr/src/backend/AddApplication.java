@@ -7,7 +7,6 @@ package backend;
 import gui.Main;
 
 import java.sql.*;
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 public class AddApplication {
 
@@ -44,7 +43,7 @@ public class AddApplication {
 					Main.Auth.insertRow(Values, "platform");
 				}
 			}
-			catch (MySQLIntegrityConstraintViolationException ae)
+			catch (Exception ae)
 			{
 				System.err.println("E: Constraint Violation");
 			}
