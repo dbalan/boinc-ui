@@ -36,6 +36,18 @@ public class ProjectDetails {
 		
 		 
 	}
-
+	public String projecthtml(){
+		String msg;
+		msg="<html><p align=\"center\"><table>";
+		msg+="<tr><td>Project Name</td><td>:</td><td>"+projectName+"</td><tr>";
+		msg+="<tr><td>Nice Project Name</td><td>:</td><td>"+niceProjectName+"</td><tr>";
+		msg+="<tr><td>User No</td><td>:</td><td>"+Integer.toString(userNo)+"</td><tr>";
+		msg+="<tr><td>Host No</td><td>:</td><td>"+Integer.toString(hostNo)+"</td><tr>";
+		msg+="<tr><td>Work Uint No</td><td>:</td><td>"+Integer.toString(workUnitNo)+"</td><tr>";
+		msg+="<tr><td>User No</td><td>:</td><td>"+Integer.toString(userNo)+"</td><tr>";
+		msg+="</table><p></html>";
+		return msg;
+		
+	}
 
 }

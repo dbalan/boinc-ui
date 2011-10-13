@@ -13,6 +13,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -25,11 +26,13 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+//import backend.ProjectDetails;
 public class Window {
 
 	private JFrame frame;
 	private JTable table;
 	private Object[][] data;
+	private String ProjectDetails;
 	public Window() {
 		Login l=new Login();
 		l.setVisible(true);
@@ -97,6 +100,17 @@ public class Window {
 			}
 		});
 		HelpMenu.add(MenuAbout);
+		
+		
+		JPanel ProjectPanel = new JPanel();
+		tabbedPane.addTab("Project", null, ProjectPanel, null);
+		tabbedPane.setEnabledAt(0, true);
+		ProjectPanel.setLayout(new BorderLayout(0, 0));
+		
+		//ProjectDetails=(new ProjectDetails("ProjectPath").projecthtml());
+		JLabel lblProject = new JLabel(ProjectDetails);
+		ProjectPanel.add(lblProject, BorderLayout.CENTER);
+		
 		
 		JPanel Applicatonpannel = new JPanel();
 		tabbedPane.addTab("App Management", null, Applicatonpannel, null);
@@ -191,6 +205,7 @@ public class Window {
 		JTabbedPane tabbedPanel2 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("test", null, tabbedPanel2, null);
 		tabbedPane.setEnabledAt(1, true);
+
 		
 	}
 	public void setVisible(boolean val){
