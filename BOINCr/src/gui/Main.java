@@ -3,16 +3,16 @@ package gui;
 import backend.Authenticator;
 
 public class Main {
-	static  Authenticator A; 
-	static Window win;
+	public static  Authenticator Auth; 
+	static Window Win;
 	
 	public Main() {
-		A=new Authenticator();
-		win=new Window();
+		Auth=new Authenticator();
+		Win=new Window();
 
 		}
 	protected void finalize(){
-		A.exit();
+		Auth.exit();
 		
 	}
 }

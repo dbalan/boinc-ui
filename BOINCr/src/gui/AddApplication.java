@@ -4,25 +4,35 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.KeyStroke;
 //import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class Add {
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+public class AddApplication {
 	JFrame Addframe;
-	private JTextField AppField,PlatformField;
-	public Add() {
+	private JTextField AppField;
+	private JComboBox PlatformField;
+	public AddApplication() {
 					initialize();	
 					Addframe.setVisible(true);
+					Addframe.requestFocus();
 	}
 
 	private void initialize() {
 		Addframe = new JFrame();
 		Addframe.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		Addframe.setResizable(false);
+		Addframe.setLocation(400, 200);
 		Addframe.setMinimumSize(new Dimension(400,200));
 		Addframe.setTitle("Add Application");
 		Addframe.setAlwaysOnTop(true);
@@ -41,6 +51,7 @@ public class Add {
 		
 		AppField = new JTextField();
 		lblApplication.setLabelFor(AppField);
+<<<<<<< HEAD:BOINCr/src/gui/Add.java
 		AppField.setBounds(225, 31, 114, 28);
 		panel.add(AppField);
 		AppField.setColumns(10);
@@ -48,40 +59,73 @@ public class Add {
 		PlatformField = new JTextField();
 		lblPlatform.setLabelFor(PlatformField);
 		PlatformField.setBounds(225, 71, 114, 28);
+=======
+		AppField.setBounds(196, 31, 171, 19);
+		panel.add(AppField);
+		AppField.setColumns(10);
+		
+		PlatformField = new JComboBox();
+		setplatforms();
+		PlatformField.setBounds(196, 71, 171, 19);
+>>>>>>> 73ba40f00221ea0258e3f810e9e02f93b5c2eabf:BOINCr/src/gui/AddApplication.java
 		panel.add(PlatformField);
-		PlatformField.setColumns(10);
 		
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Addframe.dispose();
-				Main.win.setEnabled(true);
+				Main.Win.setEnabled(true);
 			}
 		});
 		btnCancel.setBounds(61, 115, 117, 25);
 		panel.add(btnCancel);
 		
-		final JButton btnAdd = new JButton("Add");
-		btnAdd.addActionListener(new ActionListener() {
+		JButton btnAdd = new JButton("Add");
+		ActionListener add = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String app=AppField.getText();
-				String platform=PlatformField.getText();
+				String platform=PlatformField.getSelectedItem().toString();
 				if(!app.isEmpty() &&!platform.isEmpty()){
 					//final JPanel panel = new JPanel();
 				    //if (JOptionPane.showConfirmDialog(panel, "Add "+app +" ("+platform+") "," Add Application",JOptionPane.OK_CANCEL_OPTION )==0){
 					//addtodatabase
 					//JOptionPane.showMessageDialog(btnAdd,app +" ("+platform+") added","Application added",JOptionPane.INFORMATION_MESSAGE);
-					Main.win.setapptable();
+					//Main.A.addApp(app,platform);
+					Main.Win.setapptable();
 					Addframe.dispose();
-					Main.win.setEnabled(true);
+					Main.Win.setEnabled(true);
 					
 				//}
 				//else return;
 				}		
 			}
-		});
-		btnAdd.setBounds(225, 115, 117, 25);
+		};
+		btnAdd.addActionListener(add);
+		btnAdd.registerKeyboardAction(add,KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false),JComponent.WHEN_IN_FOCUSED_WINDOW);
+		btnAdd.setBounds(239, 115, 117, 25);
 		panel.add(btnAdd);
+		
+		
+		
+	
+	}
+	public void setplatforms(){
+		String[] data;
+		ResultSet rs=Main.Auth.getResult("name","platform");
+		int rows =Main.Auth.getRowsNos(rs);
+		data=new String[rows];
+		int i=0;
+		try {
+			while(rs.next()){
+					data[i]=rs.getString("name");
+				i++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		DefaultComboBoxModel platforms;
+		platforms=new DefaultComboBoxModel(data);
+		PlatformField.setModel(platforms);
 	}
 }

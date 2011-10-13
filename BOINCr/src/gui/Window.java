@@ -1,36 +1,62 @@
 package gui;
-import java.awt.*;
+
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.sql.SQLException;
 
-import javax.swing.*;
+
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.KeyStroke;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import backend.ProjectDetails;
 public class Window {
 
 	private JFrame frame;
 	private JTable table;
 	private Object[][] data;
+	private String ProjectDetails;
+	private String ProjectPath;
 	public Window() {
 		Login l=new Login();
 		l.setVisible(true);
+		//initialize();
 	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	void initialize() {
 		
-		//final Image icon=Toolkit.getDefaultToolkit().getImage("path");
 		frame = new JFrame();
 		frame.setTitle("BONICr");
-		//frame.setIconImage(icon);
-		frame.setSize(1000, 700);
+		frame.setSize(550, 400);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		//frame.setIconImage(Toolkit.getDefaultToolkit().getImage("path"));
 		frame.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e){
-					Main.A.exit();
+					Main.Auth.exit();
 					System.exit(0);
 			}
 			});
@@ -49,7 +75,7 @@ public class Window {
 			public void actionPerformed(ActionEvent arg0) {
 				if(JOptionPane.showConfirmDialog(MenuDisconect, "Disconnect Database ?","Exit",JOptionPane.OK_CANCEL_OPTION)==0)
 				{
-					Main.A.exit();
+					Main.Auth.exit();
 					setVisible(false);
 					frame.pack();
 					new Main();
@@ -61,7 +87,7 @@ public class Window {
 		MenuExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(JOptionPane.showConfirmDialog(MenuExit, "Exit _______ ?","Exit",JOptionPane.OK_CANCEL_OPTION)==0){
-					Main.A.exit();
+					Main.Auth.exit();
 					System.exit(0);
 				}
 					
@@ -81,8 +107,28 @@ public class Window {
 		});
 		HelpMenu.add(MenuAbout);
 		
+		
+		JPanel ProjectPanel = new JPanel();
+		tabbedPane.addTab("Project", null, ProjectPanel, null);
+		tabbedPane.setEnabledAt(0, true);
+		ProjectPanel.setLayout(new BorderLayout(0, 0));
+		
+		try {
+			ProjectDetails=(new ProjectDetails(ProjectPath).projecthtml());
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		JLabel lblProject = new JLabel(ProjectDetails,JLabel.CENTER);
+		ProjectPanel.add(lblProject, BorderLayout.CENTER);
+		
+		JLabel lblHead=new JLabel("<html><p><br><br><strong>PROJECT DETAILS</strong></p></html>",JLabel.CENTER);
+		ProjectPanel.add(lblHead, BorderLayout.NORTH);
+		
+		
 		JPanel Applicatonpannel = new JPanel();
-		tabbedPane.addTab("Applications", null, Applicatonpannel, null);
+		tabbedPane.addTab("App Management", null, Applicatonpannel, null);
 		tabbedPane.setEnabledAt(0, true);
 		GridBagLayout gbl_Applicatonpannel = new GridBagLayout();
 		gbl_Applicatonpannel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -107,33 +153,6 @@ public class Window {
 
 		
 		
-		
-		
-		//data for testing
-		Object[][]datatest = {{ "4567" , "8675Gail" },
-				{ "Ken7566", "5555" },
-				{ "Viviane5634", "5887" },
-				{ "Melanie7345", "9222" },
-				{ "Anne1237", "3333" },
-				{ "John5656", "3144" },
-				{ "Matt5672", "2176" },
-				{ "Claire6741", "4244" },
-				{ "Erwin9023", "5159" },
-				{ "Ellen1134", "5332" },
-				{ "Jennif5689", "1212" },
-				{ "Ed9030", "1313" },
-				{ "He6751", "1415" },
-				{ "Anne1237", "3333" },
-				{ "John5656", "3144" },
-				{ "Matt5672", "2176" },
-				{ "Claire6741", "4244" },
-				{ "Erwin9023", "5159" },
-				{ "Ellen1134", "5332" },
-				{ "Jennif5689", "1212" },
-				};
-		data=datatest;
-		//delete up to this from "//data for testing"
-
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		setapptable();
@@ -142,8 +161,29 @@ public class Window {
 		table.setAutoscrolls(true);
 		Table.add(table, BorderLayout.CENTER);
 		
+		JTableHeader tableheader=table.getTableHeader();
+		Table.add(tableheader, BorderLayout.NORTH);
+		
+		JButton btnDetails = new JButton("Details");
+		ActionListener delails=new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {			
+				int row=table.getSelectedRow();
+				if(row==-1) return;
+				String str=table.getValueAt(row,0).toString();
+				new Details(str);
+			}
+		};
+		//btnDetails.registerKeyboardAction(delails,KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false),JComponent.WHEN_IN_FOCUSED_WINDOW);
+		btnDetails.addActionListener(delails);
+		GridBagConstraints gbc_btnDetails = new GridBagConstraints();
+		gbc_btnDetails.fill = GridBagConstraints.BOTH;
+		gbc_btnDetails.insets = new Insets(0, 0, 5, 0);
+		gbc_btnDetails.gridx = 12;
+		gbc_btnDetails.gridy = 4;
+		Applicatonpannel.add(btnDetails, gbc_btnDetails);
+		
 		final JButton Deletebtn = new JButton("Delete Applicaton");
-		Deletebtn.addActionListener(new ActionListener() {
+		ActionListener delete=new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int row=table.getSelectedRow();
 				if(row==-1) return;
@@ -155,7 +195,10 @@ public class Window {
 					JOptionPane.showMessageDialog(Deletebtn, "deteted");
 				}
 			}
-		});
+		};
+		Deletebtn.registerKeyboardAction(delete,KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0, false),JComponent.WHEN_IN_FOCUSED_WINDOW);
+		Deletebtn.addActionListener(delete);
+		
 		GridBagConstraints gbc_Deletebtn = new GridBagConstraints();
 		gbc_Deletebtn.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Deletebtn.insets = new Insets(0, 0, 5, 0);
@@ -167,7 +210,7 @@ public class Window {
 		Addbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setEnabled(false);
-				new Add();
+				new AddApplication();
 				//modify data[][]
 				}
 		});
@@ -182,6 +225,7 @@ public class Window {
 		JTabbedPane tabbedPanel2 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.addTab("test", null, tabbedPanel2, null);
 		tabbedPane.setEnabledAt(1, true);
+
 		
 	}
 	public void setVisible(boolean val){
@@ -194,20 +238,23 @@ public class Window {
 	@SuppressWarnings("serial")
 	public void setapptable(){
 		//getdata from database;
-		//data=Main.A.getdataarray("col1,col2", "table");		
+		data=Main.Auth.getDataArray("id,user_friendly_name", "app");		
 		table.setModel(new DefaultTableModel(data,
 				new String[] {
-					"NO", "APPLICATION"
+					"ID", "APPLICATION"
 				}
 			) {
 				boolean[] columnEditables = new boolean[] {
-					false, false
+					false,false
 				};
 				public boolean isCellEditable(int row, int column) {
 					return columnEditables[column];
 				}
 			});
-		table.getColumnModel().getColumn(0).setPreferredWidth(25);
-		table.getColumnModel().getColumn(1).setPreferredWidth(105);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+		table.getColumnModel().getColumn(0).setMaxWidth(35);
+	}
+	public void setProjectPath(String path){
+		ProjectPath=path;
 	}
 }
