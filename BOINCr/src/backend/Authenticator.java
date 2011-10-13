@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.io.*;
 
 public class Authenticator {
 	Connection con;
@@ -122,5 +123,19 @@ public class Authenticator {
 		return false;
 	}
 	
+	}
+	public Process execCommand(String command) throws IOException {
+		Process p = null;
+		
+		try {
+			p = Runtime.getRuntime().exec(command);
+			p.waitFor();
+		}
+		catch (InterruptedException ae)
+		{
+			System.err.println("E: Interrupt Execption.");
+		}
+		
+		return p;
 	}
 }
