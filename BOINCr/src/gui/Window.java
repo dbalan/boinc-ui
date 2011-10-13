@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.sql.SQLException;
 
 
 
@@ -26,7 +28,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-//import backend.ProjectDetails;
+import backend.ProjectDetails;
 public class Window {
 
 	private JFrame frame;
@@ -45,7 +47,7 @@ public class Window {
 		
 		frame = new JFrame();
 		frame.setTitle("BONICr");
-		frame.setSize(450, 350);
+		frame.setSize(550, 400);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		//frame.setIconImage(Toolkit.getDefaultToolkit().getImage("path"));
 		frame.addWindowListener(new WindowAdapter(){
@@ -107,9 +109,18 @@ public class Window {
 		tabbedPane.setEnabledAt(0, true);
 		ProjectPanel.setLayout(new BorderLayout(0, 0));
 		
-		//ProjectDetails=(new ProjectDetails("ProjectPath").projecthtml());
-		JLabel lblProject = new JLabel(ProjectDetails);
+		try {
+			ProjectDetails=(new ProjectDetails(null).projecthtml());
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		JLabel lblProject = new JLabel(ProjectDetails,JLabel.CENTER);
 		ProjectPanel.add(lblProject, BorderLayout.CENTER);
+		
+		JLabel lblHead=new JLabel("<html><p><br><br><strong>PROJECT DETAILS</strong></p></html>",JLabel.CENTER);
+		ProjectPanel.add(lblHead, BorderLayout.NORTH);
 		
 		
 		JPanel Applicatonpannel = new JPanel();

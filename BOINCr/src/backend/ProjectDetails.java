@@ -19,10 +19,13 @@ public class ProjectDetails {
 		BufferedReader reader;
 		
 		res = Main.Auth.getResult("COUNT(id)", "user");
+		res.first();
 		userNo = res.getInt(1);
 		res = Main.Auth.getResult("COUNT(id)", "host");
+		res.first();
 		hostNo = res.getInt(1);
 		res = Main.Auth.getResult("COUNT(id)", "workunit");
+		res.first();
 		workUnitNo = res.getInt(1);
 		
 		
@@ -39,12 +42,11 @@ public class ProjectDetails {
 	public String projecthtml(){
 		String msg;
 		msg="<html><p align=\"center\"><table>";
-		msg+="<tr><td>Project Name</td><td>:</td><td>"+projectName+"</td><tr>";
-		msg+="<tr><td>Nice Project Name</td><td>:</td><td>"+niceProjectName+"</td><tr>";
-		msg+="<tr><td>User No</td><td>:</td><td>"+Integer.toString(userNo)+"</td><tr>";
-		msg+="<tr><td>Host No</td><td>:</td><td>"+Integer.toString(hostNo)+"</td><tr>";
-		msg+="<tr><td>Work Uint No</td><td>:</td><td>"+Integer.toString(workUnitNo)+"</td><tr>";
-		msg+="<tr><td>User No</td><td>:</td><td>"+Integer.toString(userNo)+"</td><tr>";
+		msg+="<tr><td><b>Project Name</b></td><td>:</td><td>"+projectName+"</td><tr>";
+		msg+="<br><tr><td><b>Nice Project Name<b></td><td>:</td><td>"+niceProjectName+"</td><tr>";
+		msg+="<br><tr><td><b>User No</b></td><td>:</td><td>"+Integer.toString(userNo)+"</td><tr>";
+		msg+="<br><tr><td><b>Host No</b></td><td>:</td><td>"+Integer.toString(hostNo)+"</td><tr>";
+		msg+="<br><tr><td><b>Work Uint No</b></td><td>:</td><td>"+Integer.toString(workUnitNo)+"</td><tr>";
 		msg+="</table><p></html>";
 		return msg;
 		
