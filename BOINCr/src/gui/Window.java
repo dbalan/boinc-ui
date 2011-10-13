@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.sql.SQLException;
 
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -24,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
@@ -35,6 +38,7 @@ public class Window {
 	private JTable table;
 	private Object[][] data;
 	private String ProjectDetails;
+	private String ProjectPath;
 	public Window() {
 		Login l=new Login();
 		l.setVisible(true);
@@ -110,7 +114,7 @@ public class Window {
 		ProjectPanel.setLayout(new BorderLayout(0, 0));
 		
 		try {
-			ProjectDetails=(new ProjectDetails(null).projecthtml());
+			ProjectDetails=(new ProjectDetails(ProjectPath).projecthtml());
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
@@ -161,14 +165,16 @@ public class Window {
 		Table.add(tableheader, BorderLayout.NORTH);
 		
 		JButton btnDetails = new JButton("Details");
-		btnDetails.addActionListener(new ActionListener() {
+		ActionListener delails=new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {			
 				int row=table.getSelectedRow();
 				if(row==-1) return;
 				String str=table.getValueAt(row,0).toString();
 				new Details(str);
 			}
-		});
+		};
+		//btnDetails.registerKeyboardAction(delails,KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false),JComponent.WHEN_IN_FOCUSED_WINDOW);
+		btnDetails.addActionListener(delails);
 		GridBagConstraints gbc_btnDetails = new GridBagConstraints();
 		gbc_btnDetails.fill = GridBagConstraints.BOTH;
 		gbc_btnDetails.insets = new Insets(0, 0, 5, 0);
@@ -177,7 +183,7 @@ public class Window {
 		Applicatonpannel.add(btnDetails, gbc_btnDetails);
 		
 		final JButton Deletebtn = new JButton("Delete Applicaton");
-		Deletebtn.addActionListener(new ActionListener() {
+		ActionListener delete=new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int row=table.getSelectedRow();
 				if(row==-1) return;
@@ -189,7 +195,10 @@ public class Window {
 					JOptionPane.showMessageDialog(Deletebtn, "deteted");
 				}
 			}
-		});
+		};
+		Deletebtn.registerKeyboardAction(delete,KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0, false),JComponent.WHEN_IN_FOCUSED_WINDOW);
+		Deletebtn.addActionListener(delete);
+		
 		GridBagConstraints gbc_Deletebtn = new GridBagConstraints();
 		gbc_Deletebtn.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Deletebtn.insets = new Insets(0, 0, 5, 0);
@@ -244,5 +253,8 @@ public class Window {
 			});
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		table.getColumnModel().getColumn(0).setMaxWidth(35);
+	}
+	public void setProjectPath(String path){
+		ProjectPath=path;
 	}
 }

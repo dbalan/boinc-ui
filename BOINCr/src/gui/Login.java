@@ -137,6 +137,7 @@ JLabel lblProjectPath = new JLabel("ProjectPath");
         			String host = hostField.getText()+":"+portField.getText();
         			if(Main.Auth.getConnected(uname, passwd, host, dbase)){
         				//JOptionPane.showMessageDialog(null,"connected to database");
+        				Main.Win.setProjectPath(pathField.getText());
         				Main.Win.initialize();
     					Main.Win.setVisible(true);
     					dispose();
