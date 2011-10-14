@@ -32,9 +32,9 @@ public class AddApplication {
 			try
 			{	
 				ResultSet res;
-				res = Main.Auth.getResult("id", "platform WHERE name="+PlatformArray[1]);
-				if(res.getInt(1) != 0 )
-				{
+				res = Main.Auth.getResult("id", "platform WHERE name=\""+PlatformArray[i][0]+"\"");
+				if(res.getInt(1) != 0 )		//Exception due to empty result set or before start of result 
+				{							//try ----- if(res==null){....}else res.first();---- before	if(res.getInt(1) != 0 ){..	 
 					res = Main.Auth.getResult("MAX (id)", "platform");
 					int nextID = res.getInt(1)+1;
 					epoch = System.currentTimeMillis()/1000;
@@ -45,12 +45,14 @@ public class AddApplication {
 			}
 			catch (Exception ae)
 			{
+				ae.printStackTrace();
 				System.err.println("E: Constraint Violation");
 			}
 
 		}
 
-		String AppValues = "1,"+Long.toString(epoch)+","+appName+",0,0,"+actualAppName+",0,1,0,0,1,0";
+		String AppValues = "NULL,'"+Long.toString(epoch)+"','"+appName+"','0','0','"+actualAppName+"','0','1','0','0','1','0'";
+		System.err.println(AppValues);
 		boolean flag = Main.Auth.insertRow(AppValues, "app");
 
 		if(flag)

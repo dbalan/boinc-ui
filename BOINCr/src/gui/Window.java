@@ -210,12 +210,8 @@ public class Window {
 		Addbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setEnabled(false);
-				AddApplication addApp = new AddApplication();
-				addApp.initComponents(addApp);
-	            		addApp.setResizable(false);
-	             		addApp.setVisible(true);
-				
-				}
+				new AddApplication();
+			}
 		});
 		
 		GridBagConstraints gbc_Addbtn = new GridBagConstraints();

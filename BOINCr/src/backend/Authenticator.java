@@ -115,7 +115,7 @@ public class Authenticator {
 	try {
 		
 		stmt = con.createStatement();
-		int row = stmt.executeUpdate("INSERT INTO "+Table+"VALUES ("+Values+")");
+		int row = stmt.executeUpdate("INSERT INTO "+Table+" VALUES ( "+Values+" )");
 		if(row>0)return true;
 		else return false;
 	} catch (SQLException e) {
