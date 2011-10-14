@@ -214,7 +214,7 @@ public class Window {
 				addApp.initComponents(addApp);
 	            		addApp.setResizable(false);
 	             		addApp.setVisible(true);
-				//modify data[][]
+				
 				}
 		});
 		
