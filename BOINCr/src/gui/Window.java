@@ -210,7 +210,10 @@ public class Window {
 		Addbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setEnabled(false);
-				new AddApplication();
+				AddApp addApp = new AddApp();
+				addApp.initComponents(addApp);
+	            		addApp.setResizable(false);
+	             		addApp.setVisible(true);
 				//modify data[][]
 				}
 		});
