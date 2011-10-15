@@ -1,10 +1,10 @@
 package backend;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.io.*;
 
 public class Authenticator {
 	Connection con;
@@ -85,6 +85,13 @@ public class Authenticator {
 			}
 	}
 	public ResultSet getResult(String col,String table){
+		/*
+		 * Does SELECT col FROM table.
+		 * @see java.sql.ResultSet
+		 * 
+		 * @parm Column, table
+		 * @return ResultSet
+		 */
 		try {
 			Statement stmt = con.createStatement();
 			  ResultSet rs;
@@ -137,5 +144,19 @@ public class Authenticator {
 		}
 		
 		return p;
+	}
+	
+	public boolean execSQL(String command){
+		Statement stmt;
+		try {
+			
+			stmt = con.createStatement();
+			int row = stmt.executeUpdate(command);
+			if(row>0)return true;
+			else return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
