@@ -37,7 +37,7 @@ public class AddApplication {
 				{							//try ----- if(res==null){....}else res.first();---- before	if(res.getInt(1) != 0 ){..	 
 					res = Main.Auth.getResult("MAX (id)", "platform");
 					int nextID = res.getInt(1)+1;
-					epoch = System.currentTimeMillis()/1000;
+					
 					
 					String Values = Integer.toString(nextID)+","+Long.toString(epoch)+","+PlatformArray[i][0]+","+PlatformArray[1];
 					Main.Auth.insertRow(Values, "platform");
@@ -46,11 +46,13 @@ public class AddApplication {
 			catch (Exception ae)
 			{
 				ae.printStackTrace();
-				System.err.println("E: Constraint Violation");
+				System.err.println("W: Constraint Violation, Possibly due to platform already present in database.");
 			}
 
 		}
-
+		
+		epoch = System.currentTimeMillis()/1000;
+		System.err.println("I: Create Time "+ Long.toString(epoch));
 		String AppValues = "NULL,'"+Long.toString(epoch)+"','"+appName+"','0','0','"+actualAppName+"','0','1','0','0','1','0'";
 		System.err.println(AppValues);
 		boolean flag = Main.Auth.insertRow(AppValues, "app");
