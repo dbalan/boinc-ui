@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -70,6 +71,7 @@ public class Window {
 		menuBar.add(FileMenu);
 		
 		final JMenuItem MenuDisconect = new JMenuItem("Disconnect");
+		MenuDisconect.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,InputEvent.CTRL_MASK));
 		FileMenu.add(MenuDisconect);
 		MenuDisconect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -173,7 +175,7 @@ public class Window {
 				new Details(str);
 			}
 		};
-		//btnDetails.registerKeyboardAction(delails,KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false),JComponent.WHEN_IN_FOCUSED_WINDOW);
+		btnDetails.registerKeyboardAction(delails,KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, false),JComponent.WHEN_IN_FOCUSED_WINDOW);
 		btnDetails.addActionListener(delails);
 		GridBagConstraints gbc_btnDetails = new GridBagConstraints();
 		gbc_btnDetails.fill = GridBagConstraints.BOTH;
@@ -188,9 +190,10 @@ public class Window {
 				int row=table.getSelectedRow();
 				if(row==-1) return;
 				String str=(String) table.getValueAt(row,1);
-				if (JOptionPane.showConfirmDialog(Deletebtn, "delete "+str+" ?")==0){
+				if (JOptionPane.showConfirmDialog(Deletebtn, "delete "+str+" ?",null,JOptionPane.YES_NO_OPTION)==0){
+					/* delete application from database 
+					*/
 					//delete
-					//modify data[][]
 					setapptable();
 					JOptionPane.showMessageDialog(Deletebtn, "deteted");
 				}

@@ -34,10 +34,12 @@ public class ProjectDetails {
 		
 		reader=new BufferedReader(new InputStreamReader(proc.getInputStream()));
 		String tempName = reader.readLine();
+		if(tempName!=null){
 		tempName = tempName.split(",")[1];
 		tempName = tempName.split("\\)")[0];
 		tempName = tempName.replaceAll("^\\s+", "");
-		niceProjectName=tempName; 
+		niceProjectName=tempName;
+		}else niceProjectName=null;
 		
 		 
 	}
