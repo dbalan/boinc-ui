@@ -160,6 +160,19 @@ public class Authenticator {
 			return false;
 		}
 	}
+	/*
+	 * call update as
+	 * update(Feild,new_value,table,"");
+	 * for update whole table
+	 */
+	public boolean update(String Feild,String new_value,String table,String condition){
+		if(condition.isEmpty()){
+			condition="True";
+		}
+		String stmt="UPDATE "+table+" SET "+Feild+"="+new_value+" WHERE "+condition;
+		return execSQL(stmt);
+		
+	}
 	protected void finalize(){
 		exit();		
 	}
