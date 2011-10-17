@@ -32,7 +32,7 @@ public class AddApplication {
 			try
 			{	
 				ResultSet res;
-				res = Main.Auth.getResult("id", "platform WHERE name=\""+PlatformArray[i][0]+"\"");
+				res = Main.Auth.getResult("id", "platform","name=\""+PlatformArray[i][0]+"\"");
 				if(res.getInt(1) != 0 )		//Exception due to empty result set or before start of result 
 				{							//try ----- if(res==null){....}else res.first();---- before	if(res.getInt(1) != 0 ){..	 
 					res = Main.Auth.getResult("MAX (id)", "platform");

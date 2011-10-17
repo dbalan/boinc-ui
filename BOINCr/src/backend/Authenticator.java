@@ -61,11 +61,11 @@ public class Authenticator {
 			return 0;
 		}
 	}
-	public Object[][] getDataArray(String col,String table){
+	public Object[][] getDataArray(String col,String table,String condition){
 		try {
 			Statement stmt = con.createStatement();
 			  ResultSet rs;
-			rs = stmt.executeQuery("SELECT "+col+" FROM "+table);
+			rs = stmt.executeQuery("SELECT "+col+" FROM "+table+" WHERE "+condition);
 			int i=0;
 			int colno=rs.getMetaData().getColumnCount();
 			int rows =getRowsNos(rs);  
@@ -84,7 +84,13 @@ public class Authenticator {
 				return null;
 			}
 	}
-	public ResultSet getResult(String col,String table){
+	
+	public Object[][] getDataArray(String col,String table){
+		return getDataArray(col,table,"True");
+	}
+	
+
+	public ResultSet getResult(String col,String table,String condition){
 		/*
 		 * Does SELECT col FROM table.
 		 * @see java.sql.ResultSet
@@ -95,13 +101,16 @@ public class Authenticator {
 		try {
 			Statement stmt = con.createStatement();
 			  ResultSet rs;
-			rs = stmt.executeQuery("SELECT "+col+" FROM "+table);
+			rs = stmt.executeQuery("SELECT "+col+" FROM "+table+" WHERE "+condition);
 			return rs;
 			} 
 			catch (SQLException e1) {
 				e1.printStackTrace();
 				return null;
 			}
+	}
+	public ResultSet getResult(String col,String table){
+		return getResult(col,table,"True");
 	}
 	public boolean insert(String Feild,String Values,String Table){
 		Statement stmt;

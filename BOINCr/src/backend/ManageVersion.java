@@ -22,18 +22,18 @@ public class ManageVersion {
 	public ManageVersion(String app) throws SQLException {
 		ResultSet res=null;
 
-		String condition = "app WHERE name="+app;
-		res = Main.Auth.getResult("id,min_version,weight", condition);
+		String condition = "name="+app;
+		res = Main.Auth.getResult("id,min_version,weight","app", condition);
 		appId = res.getInt("id");
 		min_ver = res.getInt("min_version");
 		appWeight = res.getInt("weight");
 
 		condition = "app_version WHERE appid="+appId;
-		res = Main.Auth.getResult("MAX(version_num)",condition);
+		res = Main.Auth.getResult("MAX(version_num)","app",condition);
 
 		max_ver = res.getInt(1);
 
-		res = Main.Auth.getResult("version_num", condition);
+		res = Main.Auth.getResult("version_num","app", condition);
 
 		while(res.next())
 		{
