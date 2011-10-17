@@ -114,10 +114,13 @@ public class Authenticator {
 	}
 	public boolean insert(String Feild,String Values,String Table){
 		Statement stmt;
+		if(Feild.isEmpty()){
+			Feild=" ("+Feild+" )";
+		}
 		try {
 			
 			stmt = con.createStatement();
-			int row = stmt.executeUpdate("INSERT INTO "+Table+" ("+Feild+") VALUES ("+Values+")");
+			int row = stmt.executeUpdate("INSERT INTO "+Table+Feild+" VALUES ("+Values+")");
 			if(row>0)return true;
 			else return false;
 		} catch (SQLException e) {
@@ -126,19 +129,8 @@ public class Authenticator {
 		}
 		
 		}
-	public boolean insertRow(String Values,String Table){
-	Statement stmt;
-	try {
-		
-		stmt = con.createStatement();
-		int row = stmt.executeUpdate("INSERT INTO "+Table+" VALUES ( "+Values+" )");
-		if(row>0)return true;
-		else return false;
-	} catch (SQLException e) {
-		e.printStackTrace();
-		return false;
-	}
-	
+	public boolean insert(String Values,String Table){
+		return insert("",Values,Table);
 	}
 	public Process execCommand(String command) throws IOException {
 		Process p = null;
@@ -167,5 +159,8 @@ public class Authenticator {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	protected void finalize(){
+		exit();		
 	}
 }

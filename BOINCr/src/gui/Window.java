@@ -192,11 +192,10 @@ public class Window {
 				if(row==-1) return;
 				String str=(String) table.getValueAt(row,1);
 				if (JOptionPane.showConfirmDialog(Deletebtn, "delete "+str+" ?",null,JOptionPane.YES_NO_OPTION)==0){
-					/* delete application from database 
-					*/
-					//delete
+					if(backend.DeleteApp.delete(Integer.parseInt(table.getValueAt(row,0).toString()))){
+						JOptionPane.showMessageDialog(Deletebtn, "deteted");
+					}
 					setapptable();
-					JOptionPane.showMessageDialog(Deletebtn, "deteted");
 				}
 			}
 		};

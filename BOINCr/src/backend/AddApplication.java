@@ -40,7 +40,7 @@ public class AddApplication {
 					
 					
 					String Values = Integer.toString(nextID)+","+Long.toString(epoch)+","+PlatformArray[i][0]+","+PlatformArray[1];
-					Main.Auth.insertRow(Values, "platform");
+					Main.Auth.insert(Values, "platform");
 				}
 			}
 			catch (Exception ae)
@@ -54,8 +54,7 @@ public class AddApplication {
 		epoch = System.currentTimeMillis()/1000;
 		System.err.println("I: Create Time "+ Long.toString(epoch));
 		String AppValues = "NULL,'"+Long.toString(epoch)+"','"+appName+"','0','0','"+actualAppName+"','0','1','0','0','1','0'";
-		System.err.println(AppValues);
-		boolean flag = Main.Auth.insertRow(AppValues, "app");
+		boolean flag = Main.Auth.insert(AppValues, "app");
 
 		if(flag)
 		{
