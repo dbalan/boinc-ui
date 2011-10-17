@@ -4,8 +4,11 @@ import javax.swing.*;
 
 //import java.awt.Toolkit;
 import java.awt.event.*;
+
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class Login extends JFrame{
@@ -47,38 +50,67 @@ public class Login extends JFrame{
 JLabel lblProjectPath = new JLabel("ProjectPath");
         
         pathField = new JTextField();
+        pathField.setBackground(Color.LIGHT_GRAY);
         pathField.setColumns(10);
+        pathField.setEditable(false);
+        
+        JButton btnSelect = new JButton("Select");
+        btnSelect.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		String Path=pathField.getText();
+        		if(Path.isEmpty())Path=".";
+        		JFileChooser chooser;
+        		String choosertitle=null;
+        	    chooser = new JFileChooser(); 
+        	    chooser.setCurrentDirectory(new java.io.File(Path));
+        	    chooser.setDialogTitle(choosertitle);
+        	    chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        	    //
+        	    // disable the "All files" option.
+        	    //
+        	    chooser.setAcceptAllFileFilterUsed(false);
+        	    //    
+        	    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+        	    	pathField.setText(chooser.getSelectedFile().toString());
+        	      }
+        	    else {
+        	    	
+        	      }
+        	     }
+        });
         javax.swing.GroupLayout gl_jPanel1 = new javax.swing.GroupLayout(jPanel1);
         gl_jPanel1.setHorizontalGroup(
         	gl_jPanel1.createParallelGroup(Alignment.LEADING)
         		.addGroup(gl_jPanel1.createSequentialGroup()
         			.addGap(72)
         			.addGroup(gl_jPanel1.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(jButton1)
         				.addGroup(gl_jPanel1.createSequentialGroup()
-        					.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING)
-        						.addGroup(Alignment.TRAILING, gl_jPanel1.createSequentialGroup()
-        							.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING, false)
-        								.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-        								.addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        								.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-        								.addComponent(lblHost, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        							.addPreferredGap(ComponentPlacement.UNRELATED))
-        						.addGroup(gl_jPanel1.createSequentialGroup()
-        							.addComponent(lblProjectPath, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-        							.addGap(6)))
+        					.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING, false)
+        						.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+        						.addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        						.addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 70, Short.MAX_VALUE)
+        						.addComponent(lblHost, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        					.addPreferredGap(ComponentPlacement.UNRELATED))
+        				.addGroup(gl_jPanel1.createSequentialGroup()
+        					.addComponent(lblProjectPath, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+        					.addGap(6)))
+        			.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING, false)
+        				.addComponent(jTextField1)
+        				.addComponent(jPasswordField1)
+        				.addComponent(jTextField2)
+        				.addGroup(gl_jPanel1.createSequentialGroup()
         					.addGroup(gl_jPanel1.createParallelGroup(Alignment.TRAILING, false)
-        						.addComponent(pathField, Alignment.LEADING)
-        						.addGroup(Alignment.LEADING, gl_jPanel1.createSequentialGroup()
-        							.addComponent(hostField, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-        							.addPreferredGap(ComponentPlacement.RELATED)
-        							.addComponent(label, GroupLayout.PREFERRED_SIZE, 5, GroupLayout.PREFERRED_SIZE)
-        							.addPreferredGap(ComponentPlacement.RELATED)
-        							.addComponent(portField, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
-        						.addComponent(jTextField1, Alignment.LEADING)
-        						.addComponent(jPasswordField1, Alignment.LEADING)
-        						.addComponent(jTextField2, Alignment.LEADING))))
-        			.addGap(125))
+        						.addComponent(pathField, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+        						.addComponent(hostField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING, false)
+        						.addComponent(btnSelect)
+        						.addComponent(jButton1)
+        						.addGroup(gl_jPanel1.createSequentialGroup()
+        							.addComponent(label, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+        							.addGap(2)
+        							.addComponent(portField, 0, 0, Short.MAX_VALUE)))))
+        			.addGap(74))
         );
         gl_jPanel1.setVerticalGroup(
         	gl_jPanel1.createParallelGroup(Alignment.LEADING)
@@ -99,15 +131,18 @@ JLabel lblProjectPath = new JLabel("ProjectPath");
         			.addGroup(gl_jPanel1.createParallelGroup(Alignment.BASELINE)
         				.addComponent(lblHost)
         				.addComponent(hostField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(label)
-        				.addComponent(portField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(portField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(label))
         			.addGap(18)
         			.addGroup(gl_jPanel1.createParallelGroup(Alignment.LEADING)
-        				.addComponent(lblProjectPath)
-        				.addComponent(pathField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(jButton1)
-        			.addContainerGap(84, Short.MAX_VALUE))
+        				.addGroup(gl_jPanel1.createSequentialGroup()
+        					.addComponent(lblProjectPath)
+        					.addGap(34)
+        					.addComponent(jButton1))
+        				.addGroup(gl_jPanel1.createParallelGroup(Alignment.BASELINE)
+        					.addComponent(pathField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(btnSelect)))
+        			.addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel1.setLayout(gl_jPanel1);
         
