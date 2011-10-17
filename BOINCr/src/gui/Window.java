@@ -239,18 +239,11 @@ public class Window {
 	}
 	@SuppressWarnings("serial")
 	public void setapptable(){
-		//getdata from database;
+		//get data from database;
 		data=Main.Auth.getDataArray("id,user_friendly_name", "app");		
-		table.setModel(new DefaultTableModel(data,
-				new String[] {
-					"ID", "APPLICATION"
-				}
-			) {
-				boolean[] columnEditables = new boolean[] {
-					false,false
-				};
+		table.setModel(new DefaultTableModel(data,new String[] {"ID", "APPLICATION"}) {
 				public boolean isCellEditable(int row, int column) {
-					return columnEditables[column];
+					return false;
 				}
 			});
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
