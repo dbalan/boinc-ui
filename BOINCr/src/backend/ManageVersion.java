@@ -14,26 +14,26 @@ public class ManageVersion {
 
 	int max_ver=0;
 	int min_ver=0;
-	int appId=0;
+	int appId;
 	int appWeight=0;
 
 	ArrayList<Integer> versionAvailable = new ArrayList<Integer>();
 
-	public ManageVersion(String app) throws SQLException {
-		ResultSet res=null;
-
-		String condition = "name="+app;
-		res = Main.Auth.getResult("id,min_version,weight","app", condition);
-		appId = res.getInt("id");
+	public ManageVersion(String appId) throws SQLException {
+		ResultSet res;
+		this.appId=Integer.parseInt(appId);
+		String condition = "id="+appId;
+		res = Main.Auth.getResult("min_version,weight","app", condition);
+		res.first();
 		min_ver = res.getInt("min_version");
 		appWeight = res.getInt("weight");
 
-		condition = "app_version WHERE appid="+appId;
-		res = Main.Auth.getResult("MAX(version_num)","app",condition);
-
+		condition = " appid="+appId;
+		res = Main.Auth.getResult("MAX(version_num)","app_version",condition);//app
+		res.first();
 		max_ver = res.getInt(1);
 
-		res = Main.Auth.getResult("version_num","app", condition);
+		res = Main.Auth.getResult("version_num","app_version", condition);//app
 
 		while(res.next())
 		{

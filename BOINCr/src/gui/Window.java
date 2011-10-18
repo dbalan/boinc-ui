@@ -171,7 +171,7 @@ public class Window {
 				int row = table.getSelectedRow();
 				if(row==-1) return;
 				String str=table.getValueAt(row,0).toString();
-				details.setText(setmsg(str));
+				setmsg(str);
 				}   
 		});
 		
@@ -204,7 +204,9 @@ public class Window {
 					//delete
 					setapptable();
 					JOptionPane.showMessageDialog(null, "deteted");
+					setmsg("");
 				}
+				
 			}
 		};
 		
@@ -222,8 +224,17 @@ public class Window {
 		gbc_btnSetMinVersion.gridx = 13;
 		gbc_btnSetMinVersion.gridy = 7;
 		Applicatonpannel.add(btnSetMinVersion, gbc_btnSetMinVersion);
+		btnSetMinVersion.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				int row = table.getSelectedRow();
+				if(row==-1) return;
+				String str=table.getValueAt(row,0).toString();
+				new Minver(str);
+			}
+			
+		});
 		
-		JButton btnDetails = new JButton("Details");
+		JButton btnnew = new JButton("______");
 		
 		
 		GridBagConstraints gbc_btnDetails = new GridBagConstraints();
@@ -231,13 +242,14 @@ public class Window {
 		gbc_btnDetails.insets = new Insets(0, 0, 5, 0);
 		gbc_btnDetails.gridx = 13;
 		gbc_btnDetails.gridy = 8;
-		Applicatonpannel.add(btnDetails, gbc_btnDetails);
+		Applicatonpannel.add(btnnew, gbc_btnDetails);
 		
 		JButton Addbtn = new JButton("Add Application");
 		Addbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setEnabled(false);
 				new AddApplication();
+				
 			}
 		});
 		
@@ -290,7 +302,10 @@ public class Window {
 	public void setProjectPath(String path){
 		ProjectPath=path;
 	}
-	private String setmsg(String id){
+	void setmsg(String id){
+		if(id.isEmpty()){
+			details.setText("");
+		}
 		String msg="<HTML><p><h1 align=\"center\">Details</h1></p><p align=\"center\"><b><table>";		
 		String tableTmp = " id="+id;
 		try{
@@ -304,10 +319,11 @@ public class Window {
 			//name=rs.getString("name");
 		}
 			msg+="</table><b></p></HTML>";
-			return msg;
+			details.setText(msg);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			details.setText("");
+			return;
 		}
 	}
 }
