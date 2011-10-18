@@ -36,6 +36,7 @@ public class VersionManagement extends JFrame {
 		this.appid=id;
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 403, 251);
+		setTitle("Version Management");
 		setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

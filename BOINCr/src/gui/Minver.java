@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class Minver extends JFrame {
@@ -41,21 +42,21 @@ public class Minver extends JFrame {
 			panel.setLayout(null);
 		
 			JLabel lblCurrent = new JLabel("Current      :");
-			lblCurrent.setBounds(47, 31, 93, 15);
+			lblCurrent.setBounds(47, 31, 106, 15);
 			panel.add(lblCurrent);
 		
 			JLabel lblmin_ver = new JLabel("");
-			lblmin_ver.setBounds(161, 31, 84, 15);
+			lblmin_ver.setBounds(165, 31, 102, 15);
 			panel.add(lblmin_ver);
 			lblmin_ver.setText(Integer.toString(ver.getCurrentVersion()));
 		
 			JLabel lblNew = new JLabel("New           :");
-			lblNew.setBounds(47, 77, 93, 15);
+			lblNew.setBounds(47, 77, 106, 15);
 			panel.add(lblNew);
 		
 			comboBox = new JComboBox();
 			comboBox.setModel(new DefaultComboBoxModel(ver.getAvailableVersion().toArray()));
-			comboBox.setBounds(152, 72, 93, 24);
+			comboBox.setBounds(161, 72, 106, 24);
 			panel.add(comboBox);
 			
 			JButton btnCancel = new JButton("Cancel");
@@ -85,6 +86,12 @@ public class Minver extends JFrame {
 			});
 			btnOk.setBounds(162, 112, 117, 25);
 			panel.add(btnOk);
+			
+			JLabel lblAppname = new JLabel("");
+			lblAppname.setHorizontalAlignment(SwingConstants.CENTER);
+			lblAppname.setBounds(77, 0, 152, 15);
+			lblAppname.setText(ver.getname());
+			panel.add(lblAppname);
 			} catch (SQLException e) {
 				e.printStackTrace();
 				dispose();

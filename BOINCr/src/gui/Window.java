@@ -81,8 +81,7 @@ public class Window {
 				if(JOptionPane.showConfirmDialog(MenuDisconect, "Disconnect Database ?","Exit",JOptionPane.OK_CANCEL_OPTION)==0)
 				{
 					Main.Auth.exit();
-					setVisible(false);
-					frame.pack();
+					frame.dispose();
 					new Main();
 				}
 			}

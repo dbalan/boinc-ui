@@ -16,6 +16,7 @@ public class ManageVersion {
 	int min_ver=0;
 	int appId;
 	int appWeight=0;
+	String app_name;
 
 	ArrayList<Integer> versionAvailable = new ArrayList<Integer>();
 
@@ -23,8 +24,9 @@ public class ManageVersion {
 		ResultSet res;
 		this.appId=Integer.parseInt(appId);
 		String condition = "id="+appId;
-		res = Main.Auth.getResult("min_version,weight","app", condition);
+		res = Main.Auth.getResult("name,min_version,weight","app", condition);
 		res.first();
+		app_name= res.getString("name");
 		min_ver = res.getInt("min_version");
 		appWeight = res.getInt("weight");
 
@@ -51,6 +53,15 @@ public class ManageVersion {
 		 */
 
 		return max_ver;
+
+	}
+	public String getname()
+	{
+		/*
+		 * @return app_name.
+		 */
+
+		return app_name;
 
 	}
 
