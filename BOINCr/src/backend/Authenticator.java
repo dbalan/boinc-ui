@@ -152,9 +152,8 @@ public class Authenticator {
 		try {
 			
 			stmt = con.createStatement();
-			int row = stmt.executeUpdate(command);
-			if(row>0)return true;
-			else return false;
+			boolean row = stmt.execute(command);
+			return row;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
