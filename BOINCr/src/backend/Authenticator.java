@@ -175,4 +175,19 @@ public class Authenticator {
 	protected void finalize(){
 		exit();		
 	}
+	public boolean delete(String table,String condition){
+		Statement stmt;
+		String sql = "DELETE FROM "+table+" WHERE "+condition;
+		try {
+			stmt = con.createStatement();
+			int rows=stmt.executeUpdate(sql);
+			if(rows>0) return true;
+			else return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+	}
 }

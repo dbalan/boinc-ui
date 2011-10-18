@@ -2,13 +2,12 @@ package backend;
 import gui.Main;
 
 public class DeleteApp {
-	static public boolean deleteApp(int app_id){
+	static public boolean deleteApp(String app_id){
 		try {
-			String app_ver_update="DELETE FROM app_version WHERE appid="+Integer.toString(app_id);
-			String app_update="DELETE FROM app WHERE id="+Integer.toString(app_id);
-			System.err.println(app_ver_update);
-			boolean flag1 = Main.Auth.execSQL(app_ver_update);
-			boolean flag2 = Main.Auth.execSQL(app_update);
+			boolean flag1 = Main.Auth.delete("app","id="+app_id);
+			boolean flag2 = Main.Auth.delete("app_version","appid="+app_id);
+			System.err.println(flag2);
+			System.err.println(flag2);
 			
 			return flag1 && flag2;
 		} catch (Exception e) {

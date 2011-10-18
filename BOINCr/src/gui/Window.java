@@ -197,14 +197,13 @@ public class Window {
 			public void actionPerformed(ActionEvent arg0) {
 				int row=table.getSelectedRow();
 				if(row==-1) return;
-				String str=(String) table.getValueAt(row,1);
+				String str=table.getValueAt(row,0).toString();
 				if (JOptionPane.showConfirmDialog(null, "delete "+str+" ?",null,JOptionPane.YES_NO_OPTION)==0){
-					/* delete application from database 
-					*/
-					//delete
-					setapptable();
+					if(backend.DeleteApp.deleteApp(str)){
 					JOptionPane.showMessageDialog(null, "deteted");
-					setmsg("");
+					setmsg("");	
+					}
+					setapptable();
 				}
 				
 			}
@@ -315,6 +314,7 @@ public class Window {
 	void setmsg(String id){
 		if(id.isEmpty()){
 			details.setText("");
+			return;
 		}
 		String msg="<HTML><p><h1 align=\"center\">Details</h1></p><p align=\"center\"><b><table>";		
 		String tableTmp = " id="+id;
