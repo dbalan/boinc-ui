@@ -73,9 +73,6 @@ JLabel lblProjectPath = new JLabel("ProjectPath");
         	    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
         	    	pathField.setText(chooser.getSelectedFile().toString());
         	      }
-        	    else {
-        	    	
-        	      }
         	     }
         });
         javax.swing.GroupLayout gl_jPanel1 = new javax.swing.GroupLayout(jPanel1);

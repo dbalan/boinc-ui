@@ -211,6 +211,15 @@ public class Window {
 		};
 		
 		JButton btnVersionManagement = new JButton("Version Management");
+		btnVersionManagement.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int row = table.getSelectedRow();
+				if(row==-1) return;
+				String str=table.getValueAt(row,0).toString();
+				setEnabled(false);
+				new VersionManagement(str);
+			}
+		});
 		GridBagConstraints gbc_btnVersionManagement = new GridBagConstraints();
 		gbc_btnVersionManagement.insets = new Insets(0, 0, 5, 0);
 		gbc_btnVersionManagement.gridx = 13;
@@ -229,6 +238,7 @@ public class Window {
 				int row = table.getSelectedRow();
 				if(row==-1) return;
 				String str=table.getValueAt(row,0).toString();
+				setEnabled(false);
 				new Minver(str);
 			}
 			

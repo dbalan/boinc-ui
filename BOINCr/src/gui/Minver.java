@@ -61,6 +61,7 @@ public class Minver extends JFrame {
 			JButton btnCancel = new JButton("Cancel");
 			btnCancel.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					Main.Win.setEnabled(true);
 					dispose();
 				}
 			});
@@ -72,11 +73,13 @@ public class Minver extends JFrame {
 				public void actionPerformed(ActionEvent arg0) {
 					if(comboBox.getSelectedItem()==null){
 						dispose();
+						Main.Win.setEnabled(true);
 						return;
 					}
 					String version=comboBox.getSelectedItem().toString();
 					ver.changeMinVersion(Integer.parseInt(version));
 					Main.Win.setmsg(app_id);
+					Main.Win.setEnabled(true);
 					dispose();
 				}
 			});
