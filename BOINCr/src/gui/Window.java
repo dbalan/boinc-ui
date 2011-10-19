@@ -106,7 +106,7 @@ public class Window {
 		final JMenuItem MenuAbout= new JMenuItem("About");
 		MenuAbout.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg){
-				String str="<html><p align =\"center\"><p>About</p><p></html>";
+				String str="<html><p align =\"center\"><h1>BOINCr</h1><i>The Graphical BOINC Client.</i><br><b>https://github.com/dhananjaynav/miniproject</html>";
 				JOptionPane.showMessageDialog(MenuAbout,str,"About",JOptionPane.INFORMATION_MESSAGE/*,new ImageIcon(icon)*/);
 			}
 		});
