@@ -44,8 +44,8 @@ public class Window {
 	private String ProjectPath;
 	private JLabel details; 
 	public Window() {
-		//Login l=new Login();
-		//l.setVisible(true);
+		Login l=new Login();
+		l.setVisible(true);
 		initialize();
 	}
 	/**
