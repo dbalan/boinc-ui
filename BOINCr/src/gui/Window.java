@@ -221,7 +221,7 @@ public class Window {
 			}
 		});
 		
-		JButton btnVersionManagement = new JButton("Version Management");
+		JButton btnVersionManagement = new JButton("Update Version");
 		btnVersionManagement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int row = table.getSelectedRow();
