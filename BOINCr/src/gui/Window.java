@@ -46,7 +46,7 @@ public class Window {
 	public Window() {
 		Login l=new Login();
 		l.setVisible(true);
-		initialize();
+		//initialize();
 	}
 	/**
 	 * Initialize the contents of the frame.
