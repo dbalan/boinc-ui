@@ -52,11 +52,7 @@ public class ManageVersion {
 		/*
 		 * @return current app version.
 		 */
-		ResultSet res;
-		res = Main.Auth.getResult("min_version", condition);
-		
-		
-		min_ver = res.getInt("min_version");
+
 		return min_ver;
 
 	}
