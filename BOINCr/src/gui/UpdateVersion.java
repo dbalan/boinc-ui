@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 
 @SuppressWarnings("serial")
-public class VersionManagement extends JFrame {
+public class UpdateVersion extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField zipField;
@@ -32,11 +32,11 @@ public class VersionManagement extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VersionManagement(String id) {
+	public UpdateVersion(String id) {
 		this.appid=id;
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 403, 251);
-		setTitle("Version Management");
+		setTitle("Update Version");
 		setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -46,7 +46,7 @@ public class VersionManagement extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		
-		JLabel label = new JLabel("__________     :");
+		JLabel lblZipfile = new JLabel("ZipFile ");
 		
 		zipField = new JTextField();
 		zipField.setEditable(false);
@@ -96,7 +96,7 @@ public class VersionManagement extends JFrame {
 			}
 		});
 		
-		JLabel label_1 = new JLabel("_________       :");
+		JLabel label_1 = new JLabel("_____");
 		
 		xmlField = new JTextField();
 		xmlField.setEnabled(false);
@@ -111,20 +111,6 @@ public class VersionManagement extends JFrame {
         	    chooser = new JFileChooser(); 
         	    chooser.setCurrentDirectory(new java.io.File("."));
         	    chooser.setDialogTitle(choosertitle);
-        	    chooser.setFileFilter(new FileFilter() {
-        	        public boolean accept(File f) {
-        	            return f.isDirectory() || f.getName().toLowerCase().endsWith(".xml");
-        	        }
-        	        
-        	        public String getDescription() {
-        	            return "xml files";
-        	        }
-        	    });
-        	    //
-        	    // disable the "All files" option.
-        	    //
-        	    chooser.setAcceptAllFileFilterUsed(false);
-        	    //    
         	    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
         	    	xmlField.setText(chooser.getSelectedFile().toString());
         	      }
@@ -155,6 +141,10 @@ public class VersionManagement extends JFrame {
 				}
 			}
 		});
+		
+		JLabel label = new JLabel(":");
+		
+		JLabel label_2 = new JLabel(":");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -164,12 +154,19 @@ public class VersionManagement extends JFrame {
 							.addGap(57)
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(label, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblZipfile, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+									.addGap(6)
 									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addComponent(zipField, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(xmlField, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(chckbxSigned, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)))
+										.addGroup(gl_panel.createSequentialGroup()
+											.addComponent(label, GroupLayout.DEFAULT_SIZE, 7, Short.MAX_VALUE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(zipField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+											.addComponent(chckbxSigned, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+												.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(ComponentPlacement.RELATED)
+												.addComponent(xmlField)))))
 								.addComponent(label_1)))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(82)
@@ -183,23 +180,29 @@ public class VersionManagement extends JFrame {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnSelectsign)))
-					.addContainerGap(27, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(41)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label)
+						.addComponent(lblZipfile)
 						.addComponent(btnSelectZip)
-						.addComponent(zipField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(zipField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(chckbxSigned)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label_1)
-						.addComponent(xmlField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnSelectsign))
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(label_1)
+								.addComponent(xmlField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnSelectsign)))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(8)
+							.addComponent(label_2)))
 					.addGap(27)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancel)
