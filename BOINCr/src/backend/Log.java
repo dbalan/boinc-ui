@@ -11,7 +11,7 @@ public class Log {
 		    // Create a file handler that write log record to a file called my.log
 		    FileHandler handler = new FileHandler(file,true);
 	    // Add to the desired logger com.mycompany is default
-		    logger = Logger.getLogger("com.mycompany");
+		    logger = Logger.getAnonymousLogger();
 		    logger.addHandler(handler);
 		} catch (IOException e) {
 			

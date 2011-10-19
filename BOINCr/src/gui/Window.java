@@ -44,9 +44,9 @@ public class Window {
 	private String ProjectPath;
 	private JLabel details; 
 	public Window() {
-		Login l=new Login();
-		l.setVisible(true);
-		//initialize();
+		//Login l=new Login();
+		//l.setVisible(true);
+		initialize();
 	}
 	/**
 	 * Initialize the contents of the frame.
@@ -232,6 +232,7 @@ public class Window {
 			}
 		});
 		GridBagConstraints gbc_btnVersionManagement = new GridBagConstraints();
+		gbc_btnVersionManagement.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnVersionManagement.insets = new Insets(0, 0, 5, 0);
 		gbc_btnVersionManagement.gridx = 13;
 		gbc_btnVersionManagement.gridy = 7;
