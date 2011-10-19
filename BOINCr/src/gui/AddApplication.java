@@ -1,7 +1,6 @@
 package gui;
 
 import java.sql.SQLException;
-
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -173,7 +172,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
 	//String[] platforms=getSelectedPlatform(platformTable);
 	try {
 		new backend.AddApplication(null, name, friendly_name);
-		//javax.swing.JOptionPane.showMessageDialog(null,"Applications added");
+		//javax.swing.JOptionPane.showMessageDialog(new JFrame(),"Applications added");
 	} catch (SQLException e) {
 	e.printStackTrace();
 	}

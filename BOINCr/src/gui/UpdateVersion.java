@@ -46,7 +46,7 @@ public class UpdateVersion extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		
-		JLabel lblZipfile = new JLabel("ZipFile ");
+		JLabel lblZipfile = new JLabel("Zip File ");
 		
 		zipField = new JTextField();
 		zipField.setEditable(false);
@@ -96,7 +96,7 @@ public class UpdateVersion extends JFrame {
 			}
 		});
 		
-		JLabel label_1 = new JLabel("_____");
+		JLabel lblKeyFile = new JLabel("Key File");
 		
 		xmlField = new JTextField();
 		xmlField.setEnabled(false);
@@ -153,21 +153,20 @@ public class UpdateVersion extends JFrame {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(57)
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblZipfile, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblKeyFile, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE))
+							.addGap(6)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(lblZipfile, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel.createSequentialGroup()
-											.addComponent(label, GroupLayout.DEFAULT_SIZE, 7, Short.MAX_VALUE)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(zipField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-											.addComponent(chckbxSigned, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-											.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-												.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(ComponentPlacement.RELATED)
-												.addComponent(xmlField)))))
-								.addComponent(label_1)))
+									.addComponent(label, GroupLayout.DEFAULT_SIZE, 7, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(zipField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+									.addComponent(chckbxSigned, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGroup(gl_panel.createSequentialGroup()
+										.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(xmlField)))))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(82)
 							.addComponent(btnCancel)
@@ -197,7 +196,7 @@ public class UpdateVersion extends JFrame {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(label_1)
+								.addComponent(lblKeyFile)
 								.addComponent(xmlField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnSelectsign)))
 						.addGroup(gl_panel.createSequentialGroup()

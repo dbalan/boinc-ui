@@ -197,16 +197,29 @@ public class Window {
 				int row=table.getSelectedRow();
 				if(row==-1) return;
 				String str=table.getValueAt(row,0).toString();
-				if (JOptionPane.showConfirmDialog(null, "delete "+str+" ?",null,JOptionPane.YES_NO_OPTION)==0){
+				String str2=table.getValueAt(row,1).toString();
+				if (JOptionPane.showConfirmDialog(null, "delete "+str2+" ?",null,JOptionPane.YES_NO_OPTION)==0){
 					if(backend.DeleteApp.deleteApp(str)){
-					JOptionPane.showMessageDialog(null, "deteted");
+						JOptionPane.showMessageDialog(null, "deteted");
 					setmsg("");	
+					}
+					else{
+						JOptionPane.showMessageDialog(frame, "Error", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 					setapptable();
 				}
 				
 			}
 		};
+		
+		JButton Addbtn = new JButton("Add Application");
+		Addbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.setEnabled(false);
+				new AddApplication();
+				
+			}
+		});
 		
 		JButton btnVersionManagement = new JButton("Version Management");
 		btnVersionManagement.addActionListener(new ActionListener() {
@@ -221,7 +234,7 @@ public class Window {
 		GridBagConstraints gbc_btnVersionManagement = new GridBagConstraints();
 		gbc_btnVersionManagement.insets = new Insets(0, 0, 5, 0);
 		gbc_btnVersionManagement.gridx = 13;
-		gbc_btnVersionManagement.gridy = 6;
+		gbc_btnVersionManagement.gridy = 7;
 		Applicatonpannel.add(btnVersionManagement, gbc_btnVersionManagement);
 		
 		JButton btnSetMinVersion = new JButton("Set Min version");
@@ -229,7 +242,7 @@ public class Window {
 		gbc_btnSetMinVersion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnSetMinVersion.insets = new Insets(0, 0, 5, 0);
 		gbc_btnSetMinVersion.gridx = 13;
-		gbc_btnSetMinVersion.gridy = 7;
+		gbc_btnSetMinVersion.gridy = 8;
 		Applicatonpannel.add(btnSetMinVersion, gbc_btnSetMinVersion);
 		btnSetMinVersion.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
@@ -240,25 +253,6 @@ public class Window {
 				new ManageVersion(str);
 			}
 			
-		});
-		
-		JButton btnnew = new JButton("______");
-		
-		
-		GridBagConstraints gbc_btnDetails = new GridBagConstraints();
-		gbc_btnDetails.fill = GridBagConstraints.BOTH;
-		gbc_btnDetails.insets = new Insets(0, 0, 5, 0);
-		gbc_btnDetails.gridx = 13;
-		gbc_btnDetails.gridy = 8;
-		Applicatonpannel.add(btnnew, gbc_btnDetails);
-		
-		JButton Addbtn = new JButton("Add Application");
-		Addbtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				frame.setEnabled(false);
-				new AddApplication();
-				
-			}
 		});
 		
 		GridBagConstraints gbc_Addbtn = new GridBagConstraints();
@@ -279,8 +273,8 @@ public class Window {
 		gbc_Deletebtn.gridy = 10;
 		Applicatonpannel.add(Deletebtn, gbc_Deletebtn);
 		
-		JTabbedPane tabbedPanel2 = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.addTab("test", null, tabbedPanel2, null);
+		//JTabbedPane tabbedPanel2 = new JTabbedPane(JTabbedPane.TOP);
+		//tabbedPane.addTab("test", null, tabbedPanel2, null);
 		tabbedPane.setEnabledAt(1, true);
 
 		
@@ -315,19 +309,20 @@ public class Window {
 			details.setText("");
 			return;
 		}
-		String msg="<HTML><p><h1 align=\"center\">Details</h1></p><p align=\"center\"><b><table>";		
+		String msg="";
 		String tableTmp = " id="+id;
 		try{
 		ResultSet rs=Main.Auth.getResult("*","app",tableTmp); 
 		if(rs!=null){
 			rs.first();
-			msg+="<tr><td>Name</td><td>"+rs.getString("name")+"</td>";
+			msg="<HTML><p><h1 align=\"center\">"+rs.getString("name")+"</h1></p><p align=\"center\"><b><table>";	
 			msg+="<tr><td>Min-Version</td><td>"+rs.getString("min_version")+"</td>";
 			msg+="<tr><td>Weight</td><td>"+rs.getString("weight")+"</td>";
 			msg+="<tr><td>Target Result</td><td>"+rs.getString("target_nresults")+"</td>";
 			//name=rs.getString("name");
-		}
 			msg+="</table><b></p></HTML>";
+		}
+			
 			details.setText(msg);
 		} catch (Exception e) {
 			e.printStackTrace();
