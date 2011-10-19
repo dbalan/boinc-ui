@@ -46,9 +46,9 @@ public class AddApplication {
 			catch (Exception ae)
 			{
 				ae.printStackTrace();
-				System.err.println("W: Constraint Violation, Possibly due to platform already present in database.");
+				//System.err.println("W: Constraint Violation, Possibly due to platform already present in database.");
+				Main.log.logger.warning("W: Constraint Violation, Possibly due to platform already present in database.");
 			}
-
 		}
 		
 		epoch = System.currentTimeMillis()/1000;
@@ -58,7 +58,8 @@ public class AddApplication {
 
 		if(flag)
 		{
-			System.err.println("I: App "+appName+" Added");
+			//System.err.println("I: App "+appName+" Added");
+			Main.log.logger.info("I: App "+appName+" Added");
 		}
 
 	}

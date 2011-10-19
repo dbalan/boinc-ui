@@ -1,4 +1,6 @@
 package backend;
+import gui.Main;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +19,8 @@ public class Authenticator {
 			System.err.println(cString);
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(cString, username, password);
-			System.err.println("Established Connection to "+ con.getMetaData().getURL());
+			//System.err.println("Established Connection to "+ con.getMetaData().getURL());
+			Main.log.logger.info("Established Connection to "+ con.getMetaData().getURL());
 			return true;
 		}
 
@@ -39,7 +42,8 @@ public class Authenticator {
 		try {
 			String str=con.getMetaData().getURL();
 			con.close();
-			System.err.println("Disconneted from "+str);
+			//System.err.println("Disconneted from "+str);
+			Main.log.logger.info("Disconneted from "+str);
 		} catch (SQLException e) {
 			System.err.println("SQLException!!");
 			e.printStackTrace();
