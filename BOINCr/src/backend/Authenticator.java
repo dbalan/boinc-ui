@@ -14,6 +14,7 @@ public class Authenticator {
 		try
 		{
 			String cString="jdbc:mysql://"+server+"/"+database;
+			System.err.println(cString);
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(cString, username, password);
 			System.err.println("Established Connection to "+ con.getMetaData().getURL());

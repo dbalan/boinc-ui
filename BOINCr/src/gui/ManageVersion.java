@@ -14,7 +14,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class Minver extends JFrame {
+public class ManageVersion extends JFrame {
 
 	private JPanel contentPane;
 	private backend.ManageVersion ver;
@@ -23,7 +23,7 @@ public class Minver extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Minver(String appid) {
+	public ManageVersion(String appid) {
 		try {
 			app_id=appid;
 			ver=new backend.ManageVersion(appid);
@@ -48,7 +48,7 @@ public class Minver extends JFrame {
 			JLabel lblmin_ver = new JLabel("");
 			lblmin_ver.setBounds(165, 31, 102, 15);
 			panel.add(lblmin_ver);
-			lblmin_ver.setText(Integer.toString(ver.getCurrentVersion()));
+			lblmin_ver.setText(Integer.toString(ver.getCurrentMinVersion()));
 		
 			JLabel lblNew = new JLabel("New           :");
 			lblNew.setBounds(47, 77, 106, 15);

@@ -237,7 +237,7 @@ public class Window {
 				if(row==-1) return;
 				String str=table.getValueAt(row,0).toString();
 				setEnabled(false);
-				new Minver(str);
+				new ManageVersion(str);
 			}
 			
 		});
