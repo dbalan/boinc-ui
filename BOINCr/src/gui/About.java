@@ -1,11 +1,15 @@
 
-package boinc;
+package gui;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  *
  * @author akhi
  */
-public class About extends javax.swing.JFrame {
+@SuppressWarnings("serial")
+public class About extends javax.swing.JDialog{
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -19,13 +23,19 @@ public class About extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     
     public About() {
+    	
+      	setTitle("About");
+    	setAlwaysOnTop(true);
         initComponents();
+        requestFocus();
+        setVisible(true);
+        setLocation(400, 200);
     }
 
-    @SuppressWarnings("unchecked")
     
-    private void initComponents() {
-
+    private void initComponents(){
+    	
+    	
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -38,7 +48,7 @@ public class About extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setLayout(null);
@@ -94,40 +104,21 @@ public class About extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
+        
+        JButton btnOk = new JButton("OK");
+        btnOk.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		Main.Win.setEnabled(true);
+        		dispose();
+        	}
+        });
+        btnOk.setBounds(163, 235, 117, 25);
+        jPanel1.add(btnOk);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    
-   /* public static void main(String args[]) {
-        
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(About.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(About.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(About.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(About.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new About().setVisible(true);
-            }
-        });
-    }*/
-    
-    
-    
+    }
 }
+    
+    
+    
+
