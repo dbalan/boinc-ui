@@ -30,7 +30,8 @@ public class ArchiveManage {
 	         BufferedInputStream is = null;
 	         ZipEntry entry;
 	         ZipFile zipfile = new ZipFile(archivePath);
-	         Enumeration e = zipfile.entries();
+	         @SuppressWarnings("rawtypes")
+			Enumeration e = zipfile.entries();
 	         while(e.hasMoreElements()) {
 	            entry = (ZipEntry) e.nextElement();
 	            
