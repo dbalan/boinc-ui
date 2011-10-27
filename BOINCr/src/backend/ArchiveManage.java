@@ -75,16 +75,18 @@ public class ArchiveManage {
 
 	}
 
-    public boolean SignArchive(String keyFilePath, String appName) {
+    @SuppressWarnings("unused")
+	public boolean SignArchive(String keyFilePath, String appName) {
 		 File app_dir = new File(extractPath+"appName");
 		 File filelist[] = app_dir.listFiles();
 		 File key = new File(keyFilePath);
 		 
-		 for (int i=0; i < filelist.length() ; i++)
+		 for (int i=0; i < filelist.length; i++)
 		 {
-			 System.err.println(filelist[i]));
+			 System.err.println(filelist[i]);
 			 
 		 }
+		 return true;
 	}
 
 }

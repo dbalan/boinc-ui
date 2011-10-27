@@ -12,6 +12,7 @@ public class AddApplication {
 
 	int nextID=1;
 
+	@SuppressWarnings("unused")
 	public AddApplication(int Platform[], String appName, String actualAppName) throws SQLException {
 		// Check platforms and Add.
 		String PlatformArray[][] = new String[2][];
