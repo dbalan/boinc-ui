@@ -106,6 +106,7 @@ public class Authenticator {
 		try {
 			Statement stmt = con.createStatement();
 			  ResultSet rs;
+			  System.err.println("SELECT "+col+" FROM "+table+" WHERE "+condition);
 			rs = stmt.executeQuery("SELECT "+col+" FROM "+table+" WHERE "+condition);
 			return rs;
 			} 

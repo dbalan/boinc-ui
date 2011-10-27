@@ -10,12 +10,13 @@ import java.sql.*;
 
 public class AddApplication {
 
+	int nextID=1;
 
 	public AddApplication(int Platform[], String appName, String actualAppName) throws SQLException {
 		// Check platforms and Add.
 		String PlatformArray[][] = new String[2][];
-        long epoch = 0;
-        
+		long epoch = 0;
+
 		for (int i=0; i < 2; i++)
 		{
 			PlatformArray[i] = new String[2];
@@ -33,24 +34,17 @@ public class AddApplication {
 			{	
 				ResultSet res;
 				res = Main.Auth.getResult("id", "platform","name=\""+PlatformArray[i][0]+"\"");
-				if(res.getInt(1) != 0 )		//Exception due to empty result set or before start of result 
-				{							//try ----- if(res==null){....}else res.first();---- before	if(res.getInt(1) != 0 ){..	 
-					res = Main.Auth.getResult("MAX (id)", "platform");
-					int nextID = res.getInt(1)+1;
-					
-					
-					String Values = Integer.toString(nextID)+","+Long.toString(epoch)+","+PlatformArray[i][0]+","+PlatformArray[1];
-					Main.Auth.insert(Values, "platform");
-				}
+				
+				
 			}
 			catch (Exception ae)
 			{
 				ae.printStackTrace();
 				//System.err.println("W: Constraint Violation, Possibly due to platform already present in database.");
-				Main.log.logger.warning("W: Constraint Violation, Possibly due to platform already present in database.");
+				Main.log.logger.warning("W: Constraint Violation, Possibly due to platform already present.");
 			}
 		}
-		
+
 		epoch = System.currentTimeMillis()/1000;
 		System.err.println("I: Create Time "+ Long.toString(epoch));
 		String AppValues = "NULL,'"+Long.toString(epoch)+"','"+appName+"','0','0','"+actualAppName+"','0','1','0','0','1','0'";

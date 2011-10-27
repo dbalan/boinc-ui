@@ -9,7 +9,7 @@ public class DeleteApp {
 			System.err.println(flag2);
 			System.err.println(flag2);
 			
-			return flag1 && flag2;
+			return flag1;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;

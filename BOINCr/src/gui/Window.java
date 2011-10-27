@@ -305,6 +305,9 @@ public class Window {
 	public void setProjectPath(String path){
 		ProjectPath=path;
 	}
+	public String getProjectpath() {
+		return ProjectPath;
+	}
 	void setmsg(String id){
 		if(id.isEmpty()){
 			details.setText("");

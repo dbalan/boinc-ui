@@ -4,6 +4,7 @@ package gui;
  *
  */
 import java.awt.BorderLayout;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,6 +17,9 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+
+import backend.ArchiveManage;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -132,9 +136,8 @@ public class UpdateVersion extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if(zipField.getText().isEmpty()||((!chckbxSigned.isSelected())&&xmlField.getText().isEmpty())) return;
 				else{
-					/*
-					 * perform backend
-					 */
+					ArchiveManage temp = new ArchiveManage(Main.Win.getProjectpath(), zipField.getText());
+					temp.ExtractArchive();
 					dispose();
 					Main.Win.setmsg(appid);
 					Main.Win.setEnabled(true);

@@ -1,12 +1,17 @@
+package gui;
 
-package boinc;
+
 
 /**
  *
  * @author akhi
  */
 public class About extends javax.swing.JFrame {
-    private javax.swing.JLabel jLabel1;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2790381365969257588L;
+	private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -47,7 +52,7 @@ public class About extends javax.swing.JFrame {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(40, 20, 350, 20);
 
-        jLabel3.setText("Version  : 1.1");
+        jLabel3.setText("Version  : 0.4");
         jPanel1.add(jLabel3);
         jLabel3.setBounds(170, 70, 110, 20);
 
@@ -96,7 +101,8 @@ public class About extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    
+    // </editor-fold>//GEN-END:initComponents
 
     
    /* public static void main(String args[]) {
@@ -124,10 +130,11 @@ public class About extends javax.swing.JFrame {
 
             public void run() {
                 new About().setVisible(true);
+                
             }
         });
-    }*/
+   // }
     
-    
+    }
     
 }
