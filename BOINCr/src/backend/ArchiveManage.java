@@ -72,6 +72,7 @@ public class ArchiveManage {
 			e.printStackTrace();
 			return false;
 		}
+
 	}
 
     public boolean SignArchive(String keyFilePath, String appName) {
